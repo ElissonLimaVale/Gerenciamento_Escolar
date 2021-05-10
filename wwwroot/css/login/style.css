@@ -1,0 +1,76 @@
+﻿* {
+    margin: 0px;
+    padding: 0px !important;
+    font-size: 14px;
+}
+label {
+    border: none;
+    outline: none;
+    padding-left: 10px !important;
+    border-radius: 5px;
+}
+
+.login-container {
+    width: 96%;
+    margin: 80px 0px;
+}
+#rigth-log {
+    display: flex;
+    justify-content: center;
+    align-items:  baseline;
+}
+#formulario {
+    display: block;
+    width: 90%;
+    margin: 50px 5%;
+    border: none;
+    border-radius: 5px !important;
+}
+#btn-entrar {
+    border: none;
+    padding: 10px 40px !important;
+    float: right;
+    border-radius: 2px;
+    background-color: #525d5c;
+    color: #f9f9f9;
+    font-size: 16px;
+    font-weight: bold;
+    width: 80%;
+    margin: 50px 10%;
+}
+.input-container {
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    padding: 5px !important;
+}
+.input {
+    touch-action: none;
+    outline: none;
+    border: none;
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 5px 15px !important;
+    border-radius: 5px;
+}
+
+.checkbox-manter {
+    padding: 5px 15px;
+    display: flex;
+}
+#recuperar-senha {
+    float: right !important;
+    margin-top: 5px !important;
+}
+#title {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    color: #fff;
+    text-shadow: 0px 0px 10px black;
+}
+
+@media screen and (max-width: 767px) {
+    #image {
+        display: none;
+    }
+}
