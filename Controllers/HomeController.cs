@@ -24,6 +24,5 @@ namespace SGIEscolar.Controllers
         {
             return View();
         }
-
     }
 }
