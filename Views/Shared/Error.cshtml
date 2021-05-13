@@ -11,7 +11,7 @@
                 <div class="col-md-12 text-center">
                     <span class="display-1 d-block">@Model.ErrorCode</span>
                     <div class="mb-4 lead">@Model.Mensagem</div>
-                    <a asp-controller="Home" asp-action="Index" class="btn btn-link">Retornar ao inicio</a>
+                    <a href="javascript:history.go(-1)" class="btn btn-link">Voltar</a>
                 </div>
             </div>
         </div>
@@ -24,9 +24,9 @@ else
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12 text-center">
-                    <span class="display-1 d-block">Erro!</span>
-                    <div class="mb-4 lead">Ops, ocorreu um erro inesperado, mas não se preocupe. Nossa equipe ja esta resolvendo.</div>
-                    <a asp-controller="Home" asp-action="Index" class="btn btn-link">Retornar ao inicio</a>
+                    <span class="display-1 d-block">Ops!</span>
+                    <div class="mb-4 lead">Ocorreu um erro inesperado, mas não se preocupe. Nossa equipe já está cuidando disso!</div>
+                    <a href="javascript:history.go(-1)" class="btn btn-link">Voltar</a>
                 </div>
             </div>
         </div>
