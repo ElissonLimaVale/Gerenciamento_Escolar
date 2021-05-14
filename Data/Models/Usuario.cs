@@ -6,6 +6,7 @@ namespace SGIEscolar.Data.Models
 {
     public class Usuario : BaseEntity
     {
+        public string Nome { get; set; }
         [Required(ErrorMessage = "'Email' é obrigatório!")]
         public string Email { get; set; }
         [Required(ErrorMessage = "'Senha' é obrigatório!")]

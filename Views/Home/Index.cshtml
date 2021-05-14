@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SGIEscolar.ViewModels.UsuarioViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 @section sitemap {
@@ -10,4 +11,38 @@
 <div class="text-center">
     <h1 class="display-4">Bem Vindo</h1>
     <p>Sistema de Gerenciamento escolar</p>
+</div>
+<div class="widget-body">
+    <form data-ajax="true" class="smart-form" method="post" asp-controller="Home" asp-action="Index">
+        <fieldset>
+            <div class="row">
+                <section class="col col-4">
+                    <label class="label">Nome</label>
+                    <label class="select">
+                        <select asp-for="Nome">
+                            <option value="">Selecione uma opção</option>
+                            <option value="">Elisson Vale</option>
+                            <option value="">Marcos Carvalho</option>
+                        </select>
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <label class="label">Email</label>
+                    <label class="select">
+                        <select asp-for="Email">
+                            <option value="">Selecione uma opção</option>
+                            <option value="">elissonvale@gmail.com</option>
+                            <option value="">MadrugadaZulu@gmail.com</option>
+                        </select>
+                    </label>
+                </section>
+                <section class="col col-4">
+                    <label class="label">Senha</label>
+                    <label class="input">
+                        <input asp-for="Senha" type="password" class="form-control" />
+                    </label>
+                </section>
+            </div>
+        </fieldset>
+    </form>
 </div>
