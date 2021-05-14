@@ -1,10 +1,20 @@
 ﻿@model ErrorViewModel
 @{
-    ViewData["Title"] = Model.Titulo;
+    ViewData["Title"] = "SGI Escolar - Error";
+    Layout = null;
 }
 
 @if (Model != null)
 {
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/template/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/lockscreen.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/smartadmin-rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/smartadmin-skins.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/smartadmin-rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/smartadmin-production-plugins.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/demo.min.css" rel="stylesheet" />
+
     <div class="page-wrap d-flex flex-row align-items-center">
         <div class="container">
             <div class="row justify-content-center">
@@ -16,9 +26,26 @@
             </div>
         </div>
     </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/template/js/notification/SmartNotification.min.js"></script>
+    <script src="~/lib/template/js/smartwidgets/jarvis.widget.min.js"></script>
+    <script src="~/lib/template/js/smart-chat-ui/smart.chat.manager.min.js"></script>
+    <script src="~/lib/template/js/plugin/select2/select2.min.js"></script>
+    <script src="~/lib/template/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+    <script src="~/lib/template/js/plugin/maskMoney/jquery.maskMoney.min.js"></script>
 }
 else
 {
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="~/lib/template/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/lockscreen.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/smartadmin-rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/smartadmin-skins.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/smartadmin-rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/smartadmin-production-plugins.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/demo.min.css" rel="stylesheet" />
 
     <div class="page-wrap d-flex flex-row align-items-center">
         <div class="container">
@@ -31,6 +58,15 @@ else
             </div>
         </div>
     </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/template/js/notification/SmartNotification.min.js"></script>
+    <script src="~/lib/template/js/smartwidgets/jarvis.widget.min.js"></script>
+    <script src="~/lib/template/js/smart-chat-ui/smart.chat.manager.min.js"></script>
+    <script src="~/lib/template/js/plugin/select2/select2.min.js"></script>
+    <script src="~/lib/template/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+    <script src="~/lib/template/js/plugin/maskMoney/jquery.maskMoney.min.js"></script>
 }
 
 

@@ -8,7 +8,7 @@ namespace SGIEscolar.Data.Notificacoes
     {
         private List<Notificacao> _notificacoes;
 
-        public Notificador()
+      public Notificador()
         {
             this._notificacoes = new List<Notificacao>();
         }
