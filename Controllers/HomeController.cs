@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using SGIEscolar.Data.Interface;
-using SGIEscolar.ViewModels;
-using System.Diagnostics;
 
 namespace SGIEscolar.Controllers
 {

@@ -1,35 +1,30 @@
 ﻿@{
     if (ViewData.ModelState.ErrorCount > 0)
     {
-        <div class="alert alert-danger fade in">
-            <button class="close" data-dismiss="alert">
-                x
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
             </button>
-            <i class="fa-fw fade fa-times"></i>
             <strong></strong>
             <div asp-validation-summary="ModelOnly" class="mensagemRetornoError"></div>
         </div>
     }
     if (!string.IsNullOrEmpty(ViewBag.Sucesso))
     {
-        <div class="alert alert-success fade in">
-            <button class="close" data-dismiss="alert">
-                x
-            </button>
-            <i class="fa-fw fade fa-times"></i>
-            <strong></strong>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             <div class="mensagemRetornoSucesso">@ViewBag.Sucesso</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     }
     if (TempData["Sucesso"] != null)
     {
-        <div class="alert alert-success fade in">
-            <button class="close" data-dismiss="alert">
-                x
-            </button>
-            <i class="fa-fw fade fa-times"></i>
-            <strong></strong>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             <div class="mensagemRetornoSucesso">@Html.Raw(TempData["Sucesso"]).ToString()</div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     }
 }
