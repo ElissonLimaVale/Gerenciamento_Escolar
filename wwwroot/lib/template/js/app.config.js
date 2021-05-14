@@ -24,7 +24,7 @@
 /*
  * GLOBAL: Sound Config (define sound path, enable or disable all sounds)
  */
-$.sound_path = "/app/sound/";
+$.sound_path = "/sound/";
 	$.sound_on = true; 
 /*
  * SAVE INSTANCE REFERENCE (DO NOT CHANGE)
