@@ -2,7 +2,7 @@
 
 namespace SGIEscolar.ViewModels
 {
-    public class BaseEntityViewModel
+    public abstract class BaseEntityViewModel
     { 
         public Guid Id { get; set; }
         public DateTime DataCadastro { get; set; }
