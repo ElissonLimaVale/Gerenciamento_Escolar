@@ -13,34 +13,31 @@
     <p>Sistema de Gerenciamento escolar</p>
 </div>
 <div class="widget-body">
+    <header>
+        Cadastro de Usuário
+    </header>
     <form data-ajax="true" class="smart-form" method="post" asp-controller="Home" asp-action="Index">
         <fieldset>
             <div class="row">
                 <section class="col col-4">
-                    <label class="label">Nome</label>
-                    <label class="select">
-                        <select asp-for="Nome">
-                            <option value="">Selecione uma opção</option>
-                            <option value="">Elisson Vale</option>
-                            <option value="">Marcos Carvalho</option>
-                        </select>
-                    </label>
+                    <label class="">Nome</label>
+                    <select class="form-control" asp-for="Nome">
+                        <option value="">Selecione uma opção</option>
+                        <option value="">Elisson Vale</option>
+                        <option value="">Marcos Carvalho</option>
+                    </select>
                 </section>
                 <section class="col col-4">
-                    <label class="label">Email</label>
-                    <label class="select">
-                        <select asp-for="Email">
-                            <option value="">Selecione uma opção</option>
-                            <option value="">elissonvale@gmail.com</option>
-                            <option value="">MadrugadaZulu@gmail.com</option>
-                        </select>
-                    </label>
+                    <label class="">Email</label>
+                    <select class="form-control" asp-for="Email">
+                        <option value="">Selecione uma opção</option>
+                        <option value="">elissonvale@gmail.com</option>
+                        <option value="">MadrugadaZulu@gmail.com</option>
+                    </select>
                 </section>
                 <section class="col col-4">
-                    <label class="label">Senha</label>
-                    <label class="input">
-                        <input asp-for="Senha" type="password" class="form-control" />
-                    </label>
+                    <label class="">Senha</label>
+                    <input asp-for="Senha" type="password" class="form-control" />
                 </section>
             </div>
         </fieldset>
