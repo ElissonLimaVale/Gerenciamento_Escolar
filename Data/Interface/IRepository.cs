@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace SGIEscolar.Data.Interface
 {
@@ -9,6 +10,8 @@ namespace SGIEscolar.Data.Interface
         public void Atualizar(TEntity entity);
         public void Deletar(TEntity entity);
         IEnumerable<TEntity> ListarTodos();
-        TEntity BuscarPorId(Guid id);
+        IEnumerable<TEntity> BuscarLista(Expression<Func<TEntity, bool>> expression, string[] includes);
+        TEntity BuscarPorId(Guid id, string[] includes);
+        TEntity BuscarObjeto(Expression<Func<TEntity, bool>> expression, string[] includes);
     }
 }
