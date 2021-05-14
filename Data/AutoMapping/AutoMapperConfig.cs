@@ -1,6 +1,6 @@
-﻿
-
-using AutoMapper;
+﻿using AutoMapper;
+using SGIEscolar.Data.Models;
+using SGIEscolar.ViewModels;
 
 namespace SGIEscolar.Data.AutoMapping
 {
@@ -8,7 +8,10 @@ namespace SGIEscolar.Data.AutoMapping
     {
         public AutoMapperConfig()
         {
-            //Create Mappinges
+            //Create Mappings
+            CreateMap<UsuarioViewModel, Usuario>().ReverseMap();
+            CreateMap<PermissaoViewModel, Permissao>().ReverseMap();
+            CreateMap<LicencaViewModel, Licenca>().ReverseMap();
         }
     }
 }

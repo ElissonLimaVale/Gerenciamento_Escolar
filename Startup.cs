@@ -1,3 +1,4 @@
+using KissLog.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +32,7 @@ namespace SGIEscolar
             services.DIREsolveDependences();
             services.AddAutoMapper(typeof(AutoMapperConfig));
             services.AddControllersWithViews();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -46,6 +48,7 @@ namespace SGIEscolar
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
+            app.UseKissLogMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
@@ -53,6 +56,7 @@ namespace SGIEscolar
                     name: "default",
                     pattern: "{controller=Login}/{action=Index}/{id?}");
             });
+            LogConfig.RegisterKissLogListeners(Configuration);
         }
     }
 }
