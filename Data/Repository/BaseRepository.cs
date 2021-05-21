@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace SGIEscolar.Data.Repository
 {
@@ -42,9 +43,34 @@ namespace SGIEscolar.Data.Repository
             return dbSet.ToListAsync().Result;
         }
 
-        public TEntity BuscarPorId(Guid id)
+        public IEnumerable<TEntity> BuscarLista(Expression<Func<TEntity, bool>> expression, string[] includes)
         {
-            return dbSet.Where(x => x.Id == id).Single();
+            var result = dbSet.AsNoTracking();
+            if (includes != null)
+                foreach (var item in includes)
+                    result = result.Include(item);
+
+            return result.Where(expression).ToList();
+        }
+
+        public TEntity BuscarPorId(Guid id, string[] includes)
+        {
+            var result = dbSet.AsNoTracking();
+            if(includes != null)
+                foreach(var item in includes)
+                    result = result.Include(item);
+
+            return result.Where(x => x.Id == id).Single();
+        }
+
+        public TEntity BuscarObjeto(Expression<Func<TEntity, bool>> expression, string[] includes)
+        {
+            var result = dbSet.AsNoTracking();
+            if (includes != null)
+                foreach (var item in includes)
+                    result = result.Include(item);
+
+            return result.Where(expression).Single();
         }
 
         public void Dispose()

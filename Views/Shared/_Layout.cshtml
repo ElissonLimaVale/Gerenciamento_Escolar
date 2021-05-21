@@ -1,48 +1,119 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - SGIEscolar</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link href="~/lib/template/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/lockscreen.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/invoice.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/demo.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/smartadmin-production-plugins.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/smartadmin-skins.min.css" rel="stylesheet" />
+    <link href="~/lib/template/css/smartadmin-rtl.min.css" rel="stylesheet" />
+
+    <link href="~/lib/tabulator-master/dist/css/tabulator.css" rel="stylesheet" />
+    <link href="~/css/TabulatorAdapterLayout.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="~/css/site.css" />
+    @RenderSection("Styles", required: false)
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SGIEscolar</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+            </div>
+            <div class="p-4">
+                <h1><a asp-controller="Home" asp-action="Index" class="logo">SGI Escolar <span>SGI Escolar Agency</span></a></h1>
+                <ul class="list-unstyled components mb-5">
+                    <li class="active">
+                        <a asp-controller="Home" asp-action="Index"><span class="fa fa-home mr-3"></span> Home</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-user mr-3"></span> Alunos</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-user mr-3"></span> Profssores</a> @*fa-briefcase*@
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-sticky-note mr-3"></span> Relatórios</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-suitcase mr-3"></span> Semestres</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-cogs mr-3"></span> Gerenciamento</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="fa fa-paper-plane mr-3"></span> Contate-nos</a>
+                    </li>
+                </ul>
+
+                <div class="mb-5">
+                    @*<h3 class="h6 mb-3">Subscribe for newsletter</h3>
+                        <form action="#" class="subscribe-form">
+                            <div class="form-group d-flex">
+                                <div class="icon"><span class="icon-paper-plane"></span></div>
+                                <input type="text" class="form-control" placeholder="Enter Email Address">
+                            </div>
+                        </form>*@
                 </div>
+
+                <div class="footer">
+                    @*<p>
+                            Copyright &copy;
+                        </p>*@
+                </div>
+
             </div>
         </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5 pt-5">
+            <div id="ribbon">
+                @RenderSection("sitemap", false)
+            </div>
+            <vc:summary></vc:summary>
             @RenderBody()
-        </main>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - SGIEscolar - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/template/js/bootstrap/bootstrap.min.js"></script>
+
+    <script src="~/lib/template/js/app.config.js"></script>
+    <script src="~/lib/template/js/notification/SmartNotification.min.js"></script>
+    <script src="~/lib/template/js/smartwidgets/jarvis.widget.min.js"></script>
+    <script src="~/lib/template/js/plugin/sparkline/jquery.sparkline.min.js"></script>
+    <script src="~/lib/template/js/plugin/masked-input/jquery.maskedinput.min.js"></script>
+    <script src="~/lib/template/js/plugin/maskMoney/jquery.maskMoney.min.js"></script>
+    <script src="~/lib/template/js/plugin/bootstrap-slider/bootstrap-slider.min.js"></script>
+    <script src="~/lib/template/js/plugin/msie-fix/jquery.mb.browser.min.js"></script>
+    <script src="~/lib/template/js/plugin/fastclick/fastclick.min.js"></script>
+    <script src="~/lib/template/js/plugin/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/lib/template/js/plugin/datatables/dataTables.colVis.min.js"></script>
+    <script src="~/lib/template/js/plugin/datatables/dataTables.tableTools.min.js"></script>
+    <script src="~/lib/template/js/plugin/datatables/dataTables.bootstrap.min.js"></script>
+    <script src="~/lib/template/js/plugin/datatable-responsive/datatables.responsive.min.js"></script>
+    <script src="~/lib/template/js/app.min.js"></script>
+    <script src="~/js/dataTableConfig.js"></script>
+
+    <script src="~/lib/tabulator-master/dist/js/tabulator.min.js"></script>
+    <script src="~/lib/tabulator-master/dist/js/modules/ajax.min.js"></script>
+    <script src="~/lib/tabulator-master/dist/js/modules/responsive_layout.js"></script>
+    <script src="~/lib/tabulator-master/dist/js/modules/accessor.min.js"></script>
+    <script src="~/lib/tabulator-master/dist/js/modules/format.min.js"></script>
+    <script src="~/lib/tabulator-master/dist/js/modules/mutator.min.js"></script>
+
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

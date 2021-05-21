@@ -1,6 +1,4 @@
-﻿
-
-using AutoMapper;
+﻿using AutoMapper;
 using SGIEscolar.Data.Models;
 using SGIEscolar.ViewModels;
 

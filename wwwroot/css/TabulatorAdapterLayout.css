@@ -1,0 +1,92 @@
+﻿/*################################# Tabulator Style ######################################*/
+.tabulator {
+    border-color: rgba(0,0,0,.0);
+    background-color: #f5f5f5 !important;
+}
+
+.tabulator-table {
+    border: none;
+}
+
+.tabulator-header {
+    background-color: rgba(0,0,0,.0) !important;
+}
+
+.tabulator .tabulator-header {
+    border-bottom: 2px solid rgba(0,0,0,.1);
+    border-color: rgba(0,0,0,.1);
+}
+
+.tabulator-col-content {
+    background-image: linear-gradient( to top, #fafafa, #f1f1f1) !important;
+    border-color: rgba(0,0,0,.1);
+}
+
+.tabulator-col-title {
+    text-align: center;
+    font-size: 12px;
+    padding: 6px 0px;
+}
+
+.tabulator-cell {
+    text-align: center;
+    color: rgba(0,0,0,.5);
+    padding: 8px 0px !important;
+    border-color: rgba(0,0,0,.1);
+}
+
+.tabulator-col-group {
+    padding: 8px 0px !important;
+}
+
+.tabulator .tabulator-header .tabulator-col {
+    border-color: rgba(0,0,0,.1);
+}
+
+.tabulator-row .tabulator-cell {
+    border-color: rgba(0,0,0,.1);
+}
+
+.tabulator-row {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+    .tabulator-row:hover {
+        background-color: rgba(0,0,0,.1) !important;
+    }
+
+.tabulator-row-even {
+    background-color: #f8f8f8 !important;
+}
+
+.tabulator-footer {
+    background-image: linear-gradient( to top, #f1f1f1, #fafafa) !important;
+    padding: 10px 10px !important;
+    border-top: 2px solid rgba(0,0,0,.1) !important;
+}
+
+.tabulator-page, .tabulator-page-size {
+    border-color: rgba(0,0,0,.1) !important;
+    border-radius: 2px !important;
+    color: rgba(0,0,0,.4);
+    font-size: 12px;
+}
+
+    .tabulator-page:hover {
+        background-color: rgba(0,0,0,.4) !important;
+    }
+
+.tabulator .tabulator-footer .tabulator-page.active {
+    color: #509ee2 !important;
+}
+
+.tabulator-placeholder {
+    background-color: #fefefe;
+}
+
+/*############################## SPAN DE VALIDAÇÃO ##########################*/
+.validate-fail {
+    font-size: 12px;
+    font-weight: bold;
+    color: crimson;
+}

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using KissLog;
+using KissLog.AspNetCore;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using SGIEscolar.Data.Interface;
 using SGIEscolar.Data.Notificacoes;
@@ -9,7 +11,10 @@ namespace SGIEscolar.Data.Config
     {
         public static IServiceCollection DIREsolveDependences(this IServiceCollection services)
         {
-            services.AddScoped<IHttpContextAccessor, HttpContextAccessor>();
+            // KissLog Dependency Resolve
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped((context) =>  Logger.Factory.Get());
+            services.AddLogging(logging => { logging.AddKissLog(); });
 
             services.AddScoped<INotificador, Notificador>();
             return services;

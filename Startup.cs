@@ -1,6 +1,6 @@
+using KissLog.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,37 +14,41 @@ namespace SGIEscolar
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        public Startup(IConfiguration configuration)
+        public Startup(IHostEnvironment env)
         {
-            this.Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", true, true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json")
+                .AddEnvironmentVariables();
+
+            this.Configuration = builder.Build();
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
             services.AddDbContext<SGIEscolarContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.DIREsolveDependences();
             services.AddAutoMapper(typeof(AutoMapperConfig));
+            services.AddControllersWithViews();
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
+            if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
+            } else {
+                app.UseExceptionHandler("/error/500");
+                app.UseStatusCodePagesWithRedirects("/error/{0}");
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
             app.UseAuthorization();
+            app.UseKissLogMiddleware();
 
             app.UseEndpoints(endpoints =>
             {
@@ -52,6 +56,7 @@ namespace SGIEscolar
                     name: "default",
                     pattern: "{controller=Login}/{action=Index}/{id?}");
             });
+            LogConfig.RegisterKissLogListeners(Configuration);
         }
     }
 }

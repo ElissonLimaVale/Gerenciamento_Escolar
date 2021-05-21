@@ -12,7 +12,7 @@ label {
 
 .login-container {
     width: 96%;
-    margin: 80px 0px;
+    margin: 40px 0px;
 }
 #rigth-log {
     display: flex;
@@ -31,12 +31,12 @@ label {
     padding: 10px 40px !important;
     float: right;
     border-radius: 2px;
-    background-color: #525d5c;
+    background-color: #6c71ff;
     color: #f9f9f9;
     font-size: 16px;
     font-weight: bold;
-    width: 80%;
-    margin: 50px 10%;
+    width: 60%;
+    margin: 50px 20%;
 }
 .input-container {
     border-radius: 5px;
@@ -65,12 +65,33 @@ label {
     position: absolute;
     left: 20px;
     bottom: 20px;
-    color: #fff;
-    text-shadow: 0px 0px 10px black;
+    color: #343434;
 }
 
 @media screen and (max-width: 767px) {
     #image {
         display: none;
     }
+}
+
+li {
+    list-style: none;
+}
+
+.alert {
+    width: 100% !important;
+    display: inline-block !important;
+    padding: 10px !important;
+}
+
+.logo {
+    color: #6c71ff;
+    font-size: 30px;
+    text-shadow: -5px 5px 1px rgba(0,0,0,.1);
+    text-align: center;
+    font-weight: 900;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    width: 60%;
+    margin: 10px 20%;
 }
