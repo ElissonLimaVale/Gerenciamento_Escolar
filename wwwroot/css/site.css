@@ -440,6 +440,10 @@ textarea {
     resize: vertical
 }
 
+input, select, textarea {
+    background-color: #ccdddd !important;
+}
+
 fieldset {
     min-width: 0;
     padding: 0;

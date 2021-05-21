@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Mapping\" />
+    <Folder Include="wwwroot\css\home\" />
     <Folder Include="wwwroot\image\" />
   </ItemGroup>
 
