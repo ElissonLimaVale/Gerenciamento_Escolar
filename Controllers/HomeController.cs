@@ -1,6 +1,6 @@
-﻿using KissLog;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SGIEscolar.Data.Interface;
+using System.Threading.Tasks;
 
 namespace SGIEscolar.Controllers
 {
@@ -10,12 +10,12 @@ namespace SGIEscolar.Controllers
         {
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
             return View();
         }
