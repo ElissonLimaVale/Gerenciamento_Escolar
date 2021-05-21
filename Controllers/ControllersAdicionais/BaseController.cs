@@ -5,7 +5,7 @@ namespace SGIEscolar.Controllers
 {
     public class BaseController : Controller
     {
-        public readonly INotificador _notificador;
+        protected readonly INotificador _notificador;
         public BaseController(INotificador notificador)
         {
             this._notificador = notificador;
