@@ -72,9 +72,9 @@
     font-size: 12px;
 }
 
-    .tabulator-page:hover {
-        background-color: rgba(0,0,0,.4) !important;
-    }
+.tabulator-page:hover {
+    background-color: rgba(0,0,0,.4) !important;
+}
 
 .tabulator .tabulator-footer .tabulator-page.active {
     color: #509ee2 !important;
