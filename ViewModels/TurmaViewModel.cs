@@ -7,9 +7,9 @@ namespace SGIEscolar.ViewModels
 	{
 		public string Nome { get; set; }
 		public string Serie { get; set; }
-		public ProfessorViewModel Professor { get; set; }
-		public  IEnumerable<AlunoViewModel> Alunos { get; set; }
-		
+		public Guid ProfessorId { get; set; }
+		public virtual ProfessorViewModel Professor { get; set; }
+		public virtual IEnumerable<AlunoViewModel> Alunos { get; set; }
 
 	}
 }

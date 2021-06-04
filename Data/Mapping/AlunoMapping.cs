@@ -10,15 +10,15 @@ namespace SGIEscolar.Data.Mapping
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Nome).HasMaxLength(100).HasColumnType("varchar");
-            builder.Property(x => x.CPF).HasMaxLength(100).HasColumnType("varchar");
-            builder.Property(x => x.DataNascimento).HasColumnType("DateTime");
+            builder.Property(x => x.CPF).HasMaxLength(50).HasColumnType("varchar");
+            builder.Property(x => x.DataNascimento).HasColumnType("datetime");
             builder.Property(x => x.NomeDaMae).HasMaxLength(100).HasColumnType("varchar");
             builder.Property(x => x.NomeDoPai).HasMaxLength(100).HasColumnType("varchar");
 
             //relacionamentos 
-            builder.HasOne(x => x.Endereco).WithOne();
+            builder.HasOne(x => x.Endereco).WithOne().OnDelete(DeleteBehavior.Restrict);
 
-            builder.ToTable(nameof(Aluno) + "s");
+            builder.ToTable("Alunos");
         }
     }
 }

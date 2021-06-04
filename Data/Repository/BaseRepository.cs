@@ -3,10 +3,10 @@ using SGIEscolar.Data.Context;
 using SGIEscolar.Data.Interface;
 using SGIEscolar.Data.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace SGIEscolar.Data.Repository
 {
@@ -21,56 +21,74 @@ namespace SGIEscolar.Data.Repository
             this.dbSet = this.db.Set<TEntity>();
         }
 
-        public void Adicionar(TEntity entity)
+        public async Task<int> Adicionar(TEntity entity)
         {
             dbSet.Add(entity);
-            db.SaveChanges();
+            return await SaveChangeAsync();
         }
 
-        public void Atualizar(TEntity entity)
+        public async Task<int> Atualizar(TEntity entity)
         {
             db.Entry(entity).State = EntityState.Modified;
+            return await SaveChangeAsync();
         }
 
-        public void Deletar(TEntity entity)
+        public async Task<int> Deletar(TEntity entity)
         {
             dbSet.Remove(entity);
-            db.SaveChanges();
+            return await SaveChangeAsync();
         }
 
-        public IEnumerable<TEntity> ListarTodos()
+        public async Task<int> DeletarPorId(Guid id, string[] includes = null)
         {
-            return dbSet.ToListAsync().Result;
+            var entity = await BuscarPorId(id, includes);
+            dbSet.Remove(entity);
+            return await SaveChangeAsync();
         }
 
-        public IEnumerable<TEntity> BuscarLista(Expression<Func<TEntity, bool>> expression, string[] includes)
+        public async Task<IEnumerable<TEntity>> ListarTodos(string[] includes = null)
         {
             var result = dbSet.AsNoTracking();
             if (includes != null)
                 foreach (var item in includes)
                     result = result.Include(item);
 
-            return result.Where(expression).ToList();
+            return await result.ToListAsync();
         }
 
-        public TEntity BuscarPorId(Guid id, string[] includes)
+        public async Task<IEnumerable<TEntity>> BuscarLista(Expression<Func<TEntity, bool>> expression, string[] includes = null)
+        {
+            var result = dbSet.AsNoTracking();
+            if (includes != null)
+                foreach (var item in includes)
+                    result = result.Include(item);
+
+            return await result.Where(expression).ToListAsync();
+        }
+
+        public async Task<TEntity> BuscarPorId(Guid id, string[] includes = null)
         {
             var result = dbSet.AsNoTracking();
             if(includes != null)
                 foreach(var item in includes)
                     result = result.Include(item);
 
-            return result.Where(x => x.Id == id).Single();
+            return await result.Where(x => x.Id == id).SingleAsync();
         }
 
-        public TEntity BuscarObjeto(Expression<Func<TEntity, bool>> expression, string[] includes)
+        public async Task<TEntity> BuscarObjeto(Expression<Func<TEntity, bool>> expression, string[] includes = null)
         {
             var result = dbSet.AsNoTracking();
             if (includes != null)
                 foreach (var item in includes)
                     result = result.Include(item);
 
-            return result.Where(expression).Single();
+            return await result.Where(expression).SingleAsync();
+        }
+
+        public async Task<int> SaveChangeAsync()
+        {
+            return await db.SaveChangesAsync();
         }
 
         public void Dispose()

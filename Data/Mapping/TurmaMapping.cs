@@ -1,6 +1,4 @@
-﻿
-
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SGIEscolar.Data.Models;
 
@@ -14,7 +12,7 @@ namespace SGIEscolar.Data.Mapping
             builder.Property(x => x.Nome).HasMaxLength(100).HasColumnType("varchar");
             builder.Property(x => x.Serie).HasMaxLength(100).HasColumnType("varchar");
 
-            builder.HasMany(x => x.Alunos).WithOne().HasForeignKey(x => x.Id);
+            builder.HasMany(x => x.Alunos).WithOne().HasForeignKey(x => x.TurmaId);
 
             builder.ToTable("Turmas");
         }

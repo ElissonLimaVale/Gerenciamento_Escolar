@@ -11,8 +11,8 @@ namespace SGIEscolar.ViewModels
         public string Email { get; set; }
         [Required(ErrorMessage = "'Senha' é obrigatório!")]
         public string Senha { get; set; }
-        public List<PermissaoViewModel> Permissoes { get; set; }
         public Guid LicencaId { get; set; }
         public LicencaViewModel Licenca { get; set; }
+        public List<PermissaoViewModel> Permissoes { get; set; }
     }
 }

@@ -10,7 +10,8 @@ namespace SGIEscolar.Data.Models
 		public string NomeDaMae { get; set; }
 		public string NomeDoPai { get; set; }
 		public Guid EnderecoId { get; set; }
-		public Endereco Endereco { get; set; }
-
+		public Guid TurmaId { get; set; }
+		public virtual Endereco Endereco { get; set; }
+		public virtual Turma Turma { get; set; }
 	}
 }
