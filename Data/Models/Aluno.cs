@@ -9,7 +9,8 @@ namespace SGIEscolar.Data.Models
 		public DateTime DataNascimento { get; set; }
 		public string NomeDaMae { get; set; }
 		public string NomeDoPai { get; set; }
-		
+		public Guid EnderecoId { get; set; }
+		public Endereco Endereco { get; set; }
 
 	}
 }
