@@ -7,7 +7,6 @@ using SGIEscolar.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace SGIEscolar.Data.Service
 {
@@ -28,37 +27,59 @@ namespace SGIEscolar.Data.Service
             this._logger = logger;
         }
 
-        public virtual async Task Adicionar(TEntityViewModel entity)
+        public void Adicionar(TEntityViewModel entity)
         {
-            await _repository.Adicionar(_mapper.Map<TEntity>(entity));
+            try
+            {
+                _repository.Adicionar(_mapper.Map<TEntity>(entity));
+                this.Notificar("Cadastrado com sucesso!", true);
+            }catch(Exception ex)
+            {
+                _logger.Error(ex);
+                this.Notificar(ex.Message.ToString());
+            }
         }
 
-        public virtual async Task Atualizar(TEntityViewModel entity)
+        public void Atualizar(TEntityViewModel entity)
         {
-            await _repository.Atualizar(_mapper.Map<TEntity>(entity));
+            try
+            {
+                _repository.Atualizar(_mapper.Map<TEntity>(entity));
+                this.Notificar("Atualizado com sucesso!", true);
+            } catch (Exception ex) {
+                _logger.Error(ex);
+                this.Notificar(ex.Message.ToString());
+            }
         }
 
-        public virtual async Task Deletar(TEntityViewModel entity)
+        public void Deletar(TEntityViewModel entity)
         {
-            await _repository.Deletar(_mapper.Map<TEntity>(entity));
+            try
+            {
+                _repository.Deletar(_mapper.Map<TEntity>(entity));
+                this.Notificar("Deletado com sucesso!", true);
+            } catch (Exception ex) {
+                _logger.Error(ex);
+                this.Notificar(ex.Message.ToString());
+            }
         }
 
-        public virtual async Task<IEnumerable<TEntityViewModel>> ListarTodos()
+        public IEnumerable<TEntityViewModel> ListarTodos()
         {
-            return _mapper.Map<IEnumerable<TEntityViewModel>>(await _repository.ListarTodos());
+            return _mapper.Map<IEnumerable<TEntityViewModel>>(_repository.ListarTodos());
         }
-        public virtual async Task<IEnumerable<TEntityViewModel>> BuscarLista(Expression<Func<TEntity, bool>> expression, string[] includes = null)
+        public IEnumerable<TEntityViewModel> BuscarLista(Expression<Func<TEntity, bool>> expression, string[] includes = null)
         {
-            return _mapper.Map<IEnumerable<TEntityViewModel>>(await _repository.BuscarLista(expression, includes));
+            return _mapper.Map<IEnumerable<TEntityViewModel>>(_repository.BuscarLista(expression, includes));
         }
-        public virtual async Task<TEntityViewModel> BuscarPorId(Guid id, string[] includes = null)
+        public TEntityViewModel BuscarPorId(Guid id, string[] includes = null)
         {
-            return _mapper.Map<TEntityViewModel>(await _repository.BuscarPorId(id, includes));
+            return _mapper.Map<TEntityViewModel>(_repository.BuscarPorId(id, includes));
         } 
         
-        public virtual async Task<TEntityViewModel> BuscarObjeto(Expression<Func<TEntity, bool>> expression, string[] includes = null)
+        public TEntityViewModel BuscarObjeto(Expression<Func<TEntity, bool>> expression, string[] includes = null)
         {
-            return _mapper.Map<TEntityViewModel>(await _repository.BuscarObjeto(expression, includes));
+            return _mapper.Map<TEntityViewModel>(_repository.BuscarObjeto(expression, includes));
         }
 
         public void Notificar(string mensagem, bool state = false)
@@ -68,7 +89,7 @@ namespace SGIEscolar.Data.Service
 
         public void Dispose()
         {
-            this?.Dispose();
+            throw new NotImplementedException();
         }
     }
 }

@@ -2,16 +2,19 @@
 using SGIEscolar.Data.Models;
 using SGIEscolar.ViewModels;
 
+
+
 namespace SGIEscolar.Data.AutoMapping
 {
     public class AutoMapperConfig : Profile
     {
         public AutoMapperConfig()
         {
-            //Create Mappings
-            CreateMap<UsuarioViewModel, Usuario>().ReverseMap();
-            CreateMap<PermissaoViewModel, Permissao>().ReverseMap();
-            CreateMap<LicencaViewModel, Licenca>().ReverseMap();
+            //Create Mappinges
+            CreateMap<Professor,ProfessorViewModel>().ReverseMap();
+            CreateMap<Aluno,AlunoViewModel>().ReverseMap();
+            CreateMap<Endereco,EnderecoViewModel>().ReverseMap();
+            CreateMap<Turma,TurmaViewModel>().ReverseMap();
         }
     }
 }

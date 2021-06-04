@@ -10,7 +10,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Bem Vindo</h1>
-    <p>Sistema de Gerenciamento escolar</p>
+    <p>Sistema de Gerenciamento Escolar</p>
 </div>
 <div class="widget-body">
     <header>
@@ -19,7 +19,7 @@
     <form data-ajax="true" class="smart-form" method="post" asp-controller="Home" asp-action="Index">
         <fieldset>
             <div class="row">
-                <section class="col-lg-4">
+                <section class="col col-4">
                     <label class="">Nome</label>
                     <select class="form-control" asp-for="Nome">
                         <option value="">Selecione uma opção</option>
@@ -27,7 +27,7 @@
                         <option value="">Marcos Carvalho</option>
                     </select>
                 </section>
-                <section class="col-lg-4">
+                <section class="col col-4">
                     <label class="">Email</label>
                     <select class="form-control" asp-for="Email">
                         <option value="">Selecione uma opção</option>
@@ -35,7 +35,7 @@
                         <option value="">MadrugadaZulu@gmail.com</option>
                     </select>
                 </section>
-                <section class="col-lg-4">
+                <section class="col col-4">
                     <label class="">Senha</label>
                     <input asp-for="Senha" type="password" class="form-control" />
                 </section>
@@ -45,12 +45,9 @@
 
     <fieldset>
         <div class="widget-body">
-            <div class="striped" id="table-alunos">
+            <div class="striped col col-12" id="table-alunos">
                 <!-- AQUI É RENDERIZADO O TABULATOR -->
             </div>
         </div>
     </fieldset>
 </div>
-@section Scripts {
-    <script src="~/js/home/home.js"></script>
-}
