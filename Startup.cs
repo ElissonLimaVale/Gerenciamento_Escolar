@@ -27,7 +27,7 @@ namespace SGIEscolar
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<SGIEscolarContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<SGIEscolarContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
             services.DIREsolveDependences();
             services.AddAutoMapper(typeof(AutoMapperConfig));
