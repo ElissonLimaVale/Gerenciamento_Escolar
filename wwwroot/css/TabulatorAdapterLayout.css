@@ -1,8 +1,6 @@
 ﻿/*################################# Tabulator Style ######################################*/
 .tabulator {
-    margin-top: 10px;
     border-color: rgba(0,0,0,.0);
-    border-radius: 5px;
     background-color: #f5f5f5 !important;
 }
 
@@ -74,9 +72,9 @@
     font-size: 12px;
 }
 
-    .tabulator-page:hover {
-        background-color: rgba(0,0,0,.4) !important;
-    }
+.tabulator-page:hover {
+    background-color: rgba(0,0,0,.4) !important;
+}
 
 .tabulator .tabulator-footer .tabulator-page.active {
     color: #509ee2 !important;
