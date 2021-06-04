@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SGIEscolar.Data.Models
 {
@@ -9,7 +10,7 @@ namespace SGIEscolar.Data.Models
 		public string Telefone { get; set;}
 		public Endereco Endereco { get; set;}
 		public string Desciplina { get; set;}
-		public Turma Turma { get; set;}
+		public IEnumerable<Turma> Turmas { get; set;}
 	}
 }
 

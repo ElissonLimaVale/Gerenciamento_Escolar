@@ -2,10 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject></StartupObject>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Mapping\" />
     <Folder Include="wwwroot\css\home\" />
     <Folder Include="wwwroot\image\" />
   </ItemGroup>
