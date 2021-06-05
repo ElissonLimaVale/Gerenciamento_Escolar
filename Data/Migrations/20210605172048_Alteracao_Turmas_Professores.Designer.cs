@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SGIEscolar.Data.Context;
 
 namespace SGIEscolar.Data.Migrations
 {
     [DbContext(typeof(SGIEscolarContext))]
-    partial class SGIEscolarContextModelSnapshot : ModelSnapshot
+    [Migration("20210605172048_Alteracao_Turmas_Professores")]
+    partial class Alteracao_Turmas_Professores
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -252,6 +254,9 @@ namespace SGIEscolar.Data.Migrations
                     b.Property<string>("Nome")
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
+
+                    b.Property<Guid>("ProfessorId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Serie")
                         .HasMaxLength(100)

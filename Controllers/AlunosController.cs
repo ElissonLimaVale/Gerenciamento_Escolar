@@ -14,13 +14,16 @@ namespace SGIEscolar.Controllers
     public class AlunosController : BaseController
     {
         private readonly AlunoService _service;
+        private readonly TurmaService _turma;
         private string[] _includes;
         public AlunosController(
             INotificador notificador,
-            AlunoService service
+            AlunoService service,
+            TurmaService turma
             ) : base(notificador)
         {
             this._service = service;
+            this._turma = turma;
             this._includes = new string[]
             {
                 nameof(AlunoViewModel.Endereco),
@@ -33,9 +36,15 @@ namespace SGIEscolar.Controllers
             return View(await _service.ListarTodos());
         }
 
-        public IActionResult Cadastrar()
+        public async Task<IActionResult> InformacoesPeriodo()
+        {
+            return View(await _service.ListarTodos());
+        }
+
+        public async Task<IActionResult> Cadastrar()
         {
             ViewBag.Action = nameof(Cadastrar);
+            await CarregarDropDown(nameof(Cadastrar));
             return View();
         }
 
@@ -47,18 +56,18 @@ namespace SGIEscolar.Controllers
                 await _service.Adicionar(aluno);
                 if (OperacaoValida())
                 {
-                    _notificador.Handle(new Notificacao("Aluno atualizado com sucesso!", true));
+                    _notificador.Handle(new Notificacao("Aluno cadastrado com sucesso!", true));
                     return View("Index", await _service.ListarTodos());
                 }
             }
-            ViewBag.Action = nameof(Cadastrar);
+            await CarregarDropDown(nameof(Cadastrar));
             return View();
         }
 
-        public IActionResult Editar()
+        public async Task<IActionResult> Editar(Guid id)
         {
-            ViewBag.Action = nameof(Editar);
-            return View();
+            await CarregarDropDown(nameof(Editar));
+            return View(await _service.BuscarPorId(id, _includes));
         }
 
         [HttpPost]
@@ -73,7 +82,7 @@ namespace SGIEscolar.Controllers
                     return View("Index", await _service.ListarTodos());
                 }
             }
-            ViewBag.Action = nameof(Editar);
+            await CarregarDropDown(nameof(Editar));
             return View(aluno);
         }
 
@@ -82,12 +91,22 @@ namespace SGIEscolar.Controllers
             await _service.DeletarPorId(id, _includes);
             if(OperacaoValida())
                 _notificador.Handle(new Notificacao("Aluno deletado com sucesso!", true));
-            return View("Index");
+            return View("Index", await _service.ListarTodos());
         }
 
         public async Task<IActionResult> ListarTodos()
         {
             return Json(await _service.ListarTodos());
+        }
+
+        private async Task CarregarDropDown(string action)
+        {
+            if (string.Equals(action, nameof(Cadastrar)))
+                ViewBag.Title = "Matricular Aluno";
+            else
+                ViewBag.Title = "Atualizar Matricula do Aluno";
+            ViewBag.Action = action;
+            ViewBag.Turmas = await _turma.ListarTodos();
         }
     }
 }

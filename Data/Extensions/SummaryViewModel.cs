@@ -17,7 +17,7 @@ namespace SGIEscolar.Data.Extensions
             var notifcacoes = await Task.FromResult(this._notificador.ListarNotificacoes());
             notifcacoes.ForEach((x) => {
                 if (x.State) {
-                    ViewBag.Sucesso = x.Mensagem;
+                    ViewData["Sucesso"] = x.Mensagem;
                 } else {
                     ViewData.ModelState.AddModelError(string.Empty, x.Mensagem);
                 }

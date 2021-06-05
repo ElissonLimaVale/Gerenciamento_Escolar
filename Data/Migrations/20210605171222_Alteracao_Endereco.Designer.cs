@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SGIEscolar.Data.Context;
 
 namespace SGIEscolar.Data.Migrations
 {
     [DbContext(typeof(SGIEscolarContext))]
-    partial class SGIEscolarContextModelSnapshot : ModelSnapshot
+    [Migration("20210605171222_Alteracao_Endereco")]
+    partial class Alteracao_Endereco
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,21 +34,6 @@ namespace SGIEscolar.Data.Migrations
                     b.HasIndex("UsuariosId");
 
                     b.ToTable("UsuariosPermissoes");
-                });
-
-            modelBuilder.Entity("ProfessorTurma", b =>
-                {
-                    b.Property<Guid>("ProfessoresId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("TurmasId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("ProfessoresId", "TurmasId");
-
-                    b.HasIndex("TurmasId");
-
-                    b.ToTable("TurmasProfessores");
                 });
 
             modelBuilder.Entity("SGIEscolar.Data.Models.Aluno", b =>
@@ -253,11 +240,21 @@ namespace SGIEscolar.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<Guid>("ProfessorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ProfessorId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Serie")
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProfessorId");
+
+                    b.HasIndex("ProfessorId1");
 
                     b.ToTable("Turmas");
                 });
@@ -306,21 +303,6 @@ namespace SGIEscolar.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProfessorTurma", b =>
-                {
-                    b.HasOne("SGIEscolar.Data.Models.Professor", null)
-                        .WithMany()
-                        .HasForeignKey("ProfessoresId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SGIEscolar.Data.Models.Turma", null)
-                        .WithMany()
-                        .HasForeignKey("TurmasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("SGIEscolar.Data.Models.Aluno", b =>
                 {
                     b.HasOne("SGIEscolar.Data.Models.Endereco", "Endereco")
@@ -353,6 +335,26 @@ namespace SGIEscolar.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Endereco");
+                });
+
+            modelBuilder.Entity("SGIEscolar.Data.Models.Turma", b =>
+                {
+                    b.HasOne("SGIEscolar.Data.Models.Professor", null)
+                        .WithMany("Turmas")
+                        .HasForeignKey("ProfessorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SGIEscolar.Data.Models.Professor", "Professor")
+                        .WithMany()
+                        .HasForeignKey("ProfessorId1");
+
+                    b.Navigation("Professor");
+                });
+
+            modelBuilder.Entity("SGIEscolar.Data.Models.Professor", b =>
+                {
+                    b.Navigation("Turmas");
                 });
 
             modelBuilder.Entity("SGIEscolar.Data.Models.Turma", b =>

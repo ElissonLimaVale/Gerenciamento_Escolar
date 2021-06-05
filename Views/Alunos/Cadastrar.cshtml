@@ -1,17 +1,25 @@
 ﻿@model AlunoViewModel
 @section sitemap {
     <ol class="breadcrumb">
-        <li><a asp-controller="Home">Dashboard</a></li>
-        <li><a asp-controller="Alunos">Alunos</a></li>
-        <li>Cadastrar</li>
+        <li><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+        <li><a asp-controller="Alunos" asp-action="Index">Alunos</a></li>
+        <li>Matricular</li>
     </ol>
 }
 
 <div class="ui-widget-content">
     <div class="widget-header">
-        <h2>Cadastro de Alunos</h2>
+        <div class="text-center">
+            <h2>@ViewBag.Title</h2>
+        </div>
     </div>
     <div class="widget-body no-padding">
-        <partial name="_PartialFormulario" model="Model"/>
+        <partial name="_PartialFormulario" model="Model" />
     </div>
 </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

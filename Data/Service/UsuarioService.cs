@@ -56,7 +56,6 @@ namespace SGIEscolar.Data.Service
             //    Senha = "1234"
             //};
             //await Adicionar(user);
-
             var login = await BuscarObjeto(x => x.Email == usuario.Email && x.Id != new Guid());
             if(login == null || !BCrypt.Net.BCrypt.Verify(usuario.Senha, login.Senha))
             {

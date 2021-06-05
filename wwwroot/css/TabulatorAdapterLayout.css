@@ -2,6 +2,7 @@
 .tabulator {
     border-color: rgba(0,0,0,.0);
     background-color: #f5f5f5 !important;
+    margin: 10px !important;
 }
 
 .tabulator-table {
@@ -13,67 +14,66 @@
 }
 
 .tabulator .tabulator-header {
-    border-bottom: 2px solid rgba(0,0,0,.1);
-    border-color: rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    border-color: rgba(0,0,0,.05);
 }
 
 .tabulator-col-content {
-    background-image: linear-gradient( to top, #fafafa, #f1f1f1) !important;
-    border-color: rgba(0,0,0,.1);
+    background-image: linear-gradient( to top, #fefefe, #f1f1f1) !important;
+    border-color: rgba(0,0,0,.05);
 }
 
 .tabulator-col-title {
-    text-align: center;
     font-size: 12px;
-    padding: 6px 0px;
+    padding: 4px 9px;
 }
 
 .tabulator-cell {
     text-align: center;
     color: rgba(0,0,0,.5);
-    padding: 8px 0px !important;
-    border-color: rgba(0,0,0,.1);
+    padding: 4px 0px !important;
+    border-color: rgba(0,0,0,.03);
 }
 
 .tabulator-col-group {
-    padding: 8px 0px !important;
+    padding: 6px 0px !important;
 }
 
 .tabulator .tabulator-header .tabulator-col {
-    border-color: rgba(0,0,0,.1);
+    border-color: rgba(0,0,0,.05);
 }
 
 .tabulator-row .tabulator-cell {
-    border-color: rgba(0,0,0,.1);
+    border-color: rgba(0,0,0,.05);
 }
 
 .tabulator-row {
-    border-bottom: 1px solid rgba(0,0,0,.1);
+    border-bottom: 1px solid rgba(0,0,0,.05);
 }
 
-    .tabulator-row:hover {
-        background-color: rgba(0,0,0,.1) !important;
-    }
+.tabulator-row:hover {
+    background-color: rgba(0,0,0,.06) !important;
+}
 
 .tabulator-row-even {
     background-color: #f8f8f8 !important;
 }
 
 .tabulator-footer {
-    background-image: linear-gradient( to top, #f1f1f1, #fafafa) !important;
+    background-image: linear-gradient( to top, #fefefe, #fafafa) !important;
     padding: 10px 10px !important;
-    border-top: 2px solid rgba(0,0,0,.1) !important;
+    border-top: 1px solid rgba(0,0,0,.04) !important;
 }
 
 .tabulator-page, .tabulator-page-size {
-    border-color: rgba(0,0,0,.1) !important;
+    border-color: rgba(0,0,0,.05) !important;
     border-radius: 2px !important;
     color: rgba(0,0,0,.4);
     font-size: 12px;
 }
 
 .tabulator-page:hover {
-    background-color: rgba(0,0,0,.4) !important;
+    background-color: rgba(0,0,0,.3) !important;
 }
 
 .tabulator .tabulator-footer .tabulator-page.active {
@@ -90,3 +90,88 @@
     font-weight: bold;
     color: crimson;
 }
+
+
+
+
+
+
+.tabulator-footer {
+    background-image: linear-gradient( to top, #f1f1f1, #fdfcfc) !important;
+    padding: 10px 10px !important;
+    border-top: 1px solid rgba(0,0,0,.1) !important;
+    border-bottom: none !important;
+}
+
+.tabulator-page {
+    border-color: rgba(0,0,0,.1) !important;
+    border-bottom: 2px;
+    border-radius: 1px !important;
+    color: rgba(0,0,0,.9);
+    font-weight: 200 !important;
+    font-size: 12px;
+    margin: 0px !important;
+    padding: 4px 12px !important;
+    background-color: #fff !important;
+    opacity: .9 !important;
+    box-shadow: 0px 2px 0px rgba(0,0,0,.03) !important;
+}
+
+.tabulator-pages {
+    margin: 0px !important;
+    background-color: #fff !important;
+    opacity: .9 !important;
+    box-shadow: 0px 1px 0px rgba(0,0,0,.4) !important;
+}
+
+.tabulator-page:hover {
+    /*background-color: #22b2cc !important;*/
+    color: black !important;
+}
+
+.tabulator .tabulator-footer .tabulator-page.active {
+    color: #fff !important;
+    background-color: #3276b1 !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-radius: 0px;
+}
+
+.tabulator-placeholder {
+    background-color: #fafafa;
+}
+
+    .tabulator-placeholder:hover {
+        background-color: #e7f0f2;
+    }
+
+    .tabulator-placeholder span {
+        font-size: 14px !important;
+        font-weight: 200 !important;
+        color: rgba(0,0,0,.9) !important;
+        padding: 18px 0px !important;
+    }
+
+/*############################## SPAN DE VALIDAÇÃO ##########################*/
+.validate-fail {
+    font-size: 12px;
+    font-weight: bold;
+    color: crimson;
+}
+
+.tabulator-paginator label {
+    position: relative;
+    float: left;
+    padding-top: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    font-style: italic;
+    color: #969696;
+}
+
+.tabulator-paginator .tabulator-page-size {
+    display: none !important;
+}
+
+
+

@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace SGIEscolar.ViewModels
 {
 	public class EnderecoViewModel : BaseEntityViewModel
@@ -9,7 +8,7 @@ namespace SGIEscolar.ViewModels
 		public string Estado { get; set; }
 		public string Cidade { get; set; }
 		public string Rua { get; set; }
-		public int Numero { get; set; }
+		public string Numero { get; set; }
 		public string Complemento { get; set; }
 		
 	}

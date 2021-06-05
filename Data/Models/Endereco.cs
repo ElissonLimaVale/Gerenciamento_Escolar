@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace SGIEscolar.Data.Models
 {
 	public class Endereco : BaseEntity
@@ -9,8 +8,8 @@ namespace SGIEscolar.Data.Models
 		public string Estado { get; set; }
 		public string Cidade { get; set; }
 		public string Rua { get; set; }
-		public int Numero { get; set; }
+		public string Numero { get; set; }
 		public string Complemento { get; set; }
-		
+
 	}
 }

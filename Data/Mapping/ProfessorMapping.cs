@@ -15,7 +15,6 @@ namespace SGIEscolar.Data.Mapping
             builder.Property(x => x.Desciplina).HasMaxLength(100).HasColumnType("varchar");
 
             builder.HasOne(a => a.Endereco).WithOne();
-            builder.HasMany(x => x.Turmas).WithOne().HasForeignKey(x => x.ProfessorId);
 
             builder.ToTable("Professores");
 

@@ -13,6 +13,7 @@ namespace SGIEscolar.Data.Mapping
             builder.Property(x => x.Serie).HasMaxLength(100).HasColumnType("varchar");
 
             builder.HasMany(x => x.Alunos).WithOne().HasForeignKey(x => x.TurmaId);
+            builder.HasMany(x => x.Professores).WithMany(x => x.Turmas).UsingEntity(join => join.ToTable("TurmasProfessores"));
 
             builder.ToTable("Turmas");
         }

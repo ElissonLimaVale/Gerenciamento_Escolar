@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SGIEscolar.Data.Models
 {
@@ -7,8 +6,7 @@ namespace SGIEscolar.Data.Models
 	{
 		public string Nome { get; set; }
 		public string Serie { get; set; }
-		public Guid ProfessorId { get; set; }
-		public virtual Professor Professor { get; set; }
+		public virtual IEnumerable<Professor> Professores { get; set; }
 		public virtual IEnumerable<Aluno> Alunos { get; set; }
 
 	}

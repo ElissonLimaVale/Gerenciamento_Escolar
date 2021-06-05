@@ -1,31 +1,39 @@
 ﻿@model List<AlunoViewModel>
 @section sitemap {
     <ol class="breadcrumb">
-        <li><a asp-controller="Home">Dashboard</a></li>
-        <li><a asp-controller="Alunos">Alunos</a></li>
+        <li><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+        <li><a asp-controller="Alunos" asp-action="Index">Alunos</a></li>
         <li>Lista</li>
     </ol>
 }
 
 <div class="ui-widget-content">
     <div class="widget-header">
-        <h2>Lista de Alunos</h2>
+        <div class="text-center">
+            <h2>Lista de Alunos</h2>
+        </div>
     </div>
     <div class="widget-body">
-        <div class="col-lg-12">
+        <fieldset>
             <div class="row">
-                <div class="input-group">
-                    <div class="form-group">
-                        <input type="search" class="form-control" placeholder="filtro" />
-                        <label class="form-label" for="form1">Buscar</label>
+                <section class="col-md-3">
+                    <div class="input-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input id="search" type="text" class="form-control" placeholder="Filtrar" />
+                        </div>
                     </div>
-                </div>
-                <div class="">
-                    <a asp-action="Cadastrar" class="btn btn-default">
-                        Cadastrar
+                </section>
+                <section class="col-md-3 right">
+                    <a asp-action="Cadastrar" class="btn btn-default right">
+                        <i class="fa fa-dropbox"></i>
+                        Matricular
                     </a>
-                </div>
+                </section>
             </div>
+        </fieldset>
+
+        <div class="row">
             <div class="striped" id="table-alunos">
                 <!-- AQUI É RENDERIZADO O TABULATOR -->
             </div>

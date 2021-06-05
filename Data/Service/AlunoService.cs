@@ -6,7 +6,7 @@ using SGIEscolar.Data.Repository;
 using SGIEscolar.ViewModels;
 using System;
 using System.Threading.Tasks;
-
+ 
 namespace SGIEscolar.Data.Service
 {
     public class AlunoService : BaseService<Aluno, AlunoViewModel>
