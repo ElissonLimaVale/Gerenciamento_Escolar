@@ -1,6 +1,8 @@
 using KissLog.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using SGIEscolar.Data.AutoMapping;
 using SGIEscolar.Data.Config;
 using SGIEscolar.Data.Context;
+using System;
 
 namespace SGIEscolar
 {
@@ -27,15 +30,21 @@ namespace SGIEscolar
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpContextAccessor();
             services.AddDbContext<SGIEscolarContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
             services.DIREsolveDependences();
             services.AddAutoMapper(typeof(AutoMapperConfig));
-            services.AddControllersWithViews();
-
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options => {
+                options.LoginPath = new PathString("/Login/Index");
+                options.AccessDeniedPath = new PathString("/Login/Index");
+                options.LogoutPath = new PathString("/Login/Index");
+                options.ReturnUrlParameter = "";
+            });
+            services.AddMvcConfiguration();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceProvider provider)
         {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
@@ -47,7 +56,10 @@ namespace SGIEscolar
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UserGlobalizationConfig();
+            
             app.UseKissLogMiddleware();
 
             app.UseEndpoints(endpoints =>

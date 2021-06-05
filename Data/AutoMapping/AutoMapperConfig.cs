@@ -15,6 +15,9 @@ namespace SGIEscolar.Data.AutoMapping
             CreateMap<Aluno,AlunoViewModel>().ReverseMap();
             CreateMap<Endereco,EnderecoViewModel>().ReverseMap();
             CreateMap<Turma,TurmaViewModel>().ReverseMap();
+            CreateMap<Usuario,UsuarioViewModel>().ReverseMap();
+            CreateMap<Permissao,PermissaoViewModel>().ReverseMap();
+            CreateMap<Licenca,LicencaViewModel>().ReverseMap();
         }
     }
 }

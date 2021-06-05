@@ -1,18 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using SGIEscolar.Data.Interface;
 using SGIEscolar.Data.Notificacoes;
+using SGIEscolar.Data.Service;
 using SGIEscolar.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SGIEscolar.Controllers
 {
     public class LoginController : BaseController
     {
+        private readonly UsuarioService _service;
         private Dictionary<int, ErrorViewModel> _errors;
         public LoginController(
+            UsuarioService service,
             INotificador notificador
             ) : base(notificador)
         {
+            this._service = service;
             this._errors = this.GetErrors();
         }
 
@@ -22,17 +31,21 @@ namespace SGIEscolar.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(UsuarioViewModel user)
+        public async Task<IActionResult> Login(UsuarioViewModel user)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                _notificador.Handle(new Notificacao("Preecha os campos obrigatório!"));
-                return View("Index", user);
+                await _service.Authenticar(user, this.ControllerContext);
+                if (OperacaoValida())
+                    return RedirectToAction("Index", "Home");
             } 
-            return RedirectToAction("Index","Home");
+            else
+                _notificador.Handle(new Notificacao("Preecha os campos obrigatório!"));
+            return View("Index", user);
         }
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index");
         }
 
@@ -40,6 +53,7 @@ namespace SGIEscolar.Controllers
         [Route("error/{id:length(3,3)}")]
         public IActionResult Error(int id)
         {
+            id = !new int[] { 403, 404, 500 }.Contains(id) ? 500 : id;
             var error = _errors[id];
             return View("Error", error);
         }

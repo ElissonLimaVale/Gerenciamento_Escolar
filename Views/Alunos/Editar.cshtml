@@ -1,0 +1,17 @@
+﻿@model AlunoViewModel
+@section sitemap {
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home">Dashboard</a></li>
+        <li><a asp-controller="Alunos">Alunos</a></li>
+        <li>Cadastrar</li>
+    </ol>
+}
+
+<div class="ui-widget-content">
+    <div class="widget-header">
+        <h2>Cadastro de Alunos</h2>
+    </div>
+    <div class="widget-body no-padding">
+        <partial name="_PartialFormulario" model="Model" />
+    </div>
+</div>

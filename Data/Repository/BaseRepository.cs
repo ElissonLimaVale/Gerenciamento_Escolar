@@ -73,7 +73,7 @@ namespace SGIEscolar.Data.Repository
                 foreach(var item in includes)
                     result = result.Include(item);
 
-            return await result.Where(x => x.Id == id).SingleAsync();
+            return await result.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<TEntity> BuscarObjeto(Expression<Func<TEntity, bool>> expression, string[] includes = null)
@@ -83,7 +83,7 @@ namespace SGIEscolar.Data.Repository
                 foreach (var item in includes)
                     result = result.Include(item);
 
-            return await result.Where(expression).SingleAsync();
+            return await result.FirstOrDefaultAsync(expression);
         }
 
         public async Task<int> SaveChangeAsync()

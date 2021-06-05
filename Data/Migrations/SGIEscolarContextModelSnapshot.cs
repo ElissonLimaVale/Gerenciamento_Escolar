@@ -19,6 +19,21 @@ namespace SGIEscolar.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("PermissaoUsuario", b =>
+                {
+                    b.Property<Guid>("PermissoesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UsuariosId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("PermissoesId", "UsuariosId");
+
+                    b.HasIndex("UsuariosId");
+
+                    b.ToTable("UsuariosPermissoes");
+                });
+
             modelBuilder.Entity("SGIEscolar.Data.Models.Aluno", b =>
                 {
                     b.Property<Guid>("Id")
@@ -147,6 +162,7 @@ namespace SGIEscolar.Data.Migrations
             modelBuilder.Entity("SGIEscolar.Data.Models.Permissao", b =>
                 {
                     b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataAlteracao")
@@ -258,9 +274,6 @@ namespace SGIEscolar.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<Guid>("LicencaId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Nome")
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
@@ -271,10 +284,22 @@ namespace SGIEscolar.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LicencaId")
-                        .IsUnique();
-
                     b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("PermissaoUsuario", b =>
+                {
+                    b.HasOne("SGIEscolar.Data.Models.Permissao", null)
+                        .WithMany()
+                        .HasForeignKey("PermissoesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SGIEscolar.Data.Models.Usuario", null)
+                        .WithMany()
+                        .HasForeignKey("UsuariosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SGIEscolar.Data.Models.Aluno", b =>
@@ -298,15 +323,6 @@ namespace SGIEscolar.Data.Migrations
                     b.Navigation("Endereco");
 
                     b.Navigation("Turma");
-                });
-
-            modelBuilder.Entity("SGIEscolar.Data.Models.Permissao", b =>
-                {
-                    b.HasOne("SGIEscolar.Data.Models.Usuario", null)
-                        .WithMany("Permissoes")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("SGIEscolar.Data.Models.Professor", b =>
@@ -335,17 +351,6 @@ namespace SGIEscolar.Data.Migrations
                     b.Navigation("Professor");
                 });
 
-            modelBuilder.Entity("SGIEscolar.Data.Models.Usuario", b =>
-                {
-                    b.HasOne("SGIEscolar.Data.Models.Licenca", "Licenca")
-                        .WithOne()
-                        .HasForeignKey("SGIEscolar.Data.Models.Usuario", "LicencaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Licenca");
-                });
-
             modelBuilder.Entity("SGIEscolar.Data.Models.Professor", b =>
                 {
                     b.Navigation("Turmas");
@@ -354,11 +359,6 @@ namespace SGIEscolar.Data.Migrations
             modelBuilder.Entity("SGIEscolar.Data.Models.Turma", b =>
                 {
                     b.Navigation("Alunos");
-                });
-
-            modelBuilder.Entity("SGIEscolar.Data.Models.Usuario", b =>
-                {
-                    b.Navigation("Permissoes");
                 });
 #pragma warning restore 612, 618
         }

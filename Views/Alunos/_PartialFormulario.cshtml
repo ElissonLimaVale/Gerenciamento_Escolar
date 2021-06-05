@@ -1,0 +1,57 @@
+﻿@model AlunoViewModel
+
+<form class="smart-form" method="post" asp-action="ViewBag.Action">
+    <header>Dados do Aluno</header>
+    <fieldset>
+        <div class="row">
+            <section class="col col-4">
+                <label class="label"></label>
+                <label class="input">
+                    <input asp-for="Nome" class="form-control" />
+                </label>
+            </section>
+            <section class="col col-4">
+                <label class="label"></label>
+                <label class="input">
+                    <input asp-for="CPF" class="form-control" />
+                </label>
+            </section>
+            <section class="col col-4">
+                <label class="label"></label>
+                <label class="input">
+                    <input asp-for="DataNascimento" class="form-control" />
+                </label>
+            </section>
+        </div>
+        <div class="row">
+            <section class="col col-4">
+                <label class="label"></label>
+                <label class="input">
+                    <input asp-for="NomeDaMae" class="form-control" />
+                </label>
+            </section>
+            <section class="col col-4">
+                <label class="label"></label>
+                <label class="input">
+                    <input asp-for="NomeDoPai" class="form-control" />
+                </label>
+            </section>
+            <section class="col col-4">
+                <label class="label"></label>
+                <label class="input">
+                    <input asp-for="TurmaId" class="form-control" />
+                </label>
+            </section>
+        </div>
+    </fieldset>
+
+    <!-- CAMPOS IMPLICITOS -->
+    <input asp-for="Id" hidden/>
+    <input asp-for="EnderecoId" hidden/>
+    <input asp-for="Endereco.Id" hidden/>
+
+    <footer>
+        <a asp-action="Index" class="btn btn-default">Voltar</a>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </footer>
+</form>

@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using SGIEscolar.Data.Interface;
 using SGIEscolar.Data.Notificacoes;
+using SGIEscolar.Data.Repository;
+using SGIEscolar.Data.Service;
 
 namespace SGIEscolar.Data.Config
 {
@@ -17,6 +19,14 @@ namespace SGIEscolar.Data.Config
             services.AddLogging(logging => { logging.AddKissLog(); });
 
             services.AddScoped<INotificador, Notificador>();
+
+            // Registro de injeção de dependência das classes
+            services.AddScoped<AlunoRepository>();
+            services.AddScoped<AlunoService>();
+            services.AddScoped<UsuarioRepository>();
+            services.AddScoped<UsuarioService>();
+
+
             return services;
         }
     }

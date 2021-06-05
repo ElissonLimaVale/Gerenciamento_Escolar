@@ -44,6 +44,37 @@ namespace SGIEscolar.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Permissoes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Permission = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
+                    Nivel = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
+                    DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataAlteracao = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Permissoes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Usuarios",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Nome = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
+                    Email = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
+                    Senha = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
+                    DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataAlteracao = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuarios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Professores",
                 columns: table => new
                 {
@@ -68,24 +99,25 @@ namespace SGIEscolar.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Usuarios",
+                name: "UsuariosPermissoes",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nome = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
-                    Email = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
-                    Senha = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true),
-                    LicencaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DataAlteracao = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    PermissoesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UsuariosId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Usuarios", x => x.Id);
+                    table.PrimaryKey("PK_UsuariosPermissoes", x => new { x.PermissoesId, x.UsuariosId });
                     table.ForeignKey(
-                        name: "FK_Usuarios_Licencas_LicencaId",
-                        column: x => x.LicencaId,
-                        principalTable: "Licencas",
+                        name: "FK_UsuariosPermissoes_Permissoes_PermissoesId",
+                        column: x => x.PermissoesId,
+                        principalTable: "Permissoes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UsuariosPermissoes_Usuarios_UsuariosId",
+                        column: x => x.UsuariosId,
+                        principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -117,27 +149,6 @@ namespace SGIEscolar.Data.Migrations
                         principalTable: "Professores",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Permissoes",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Permission = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
-                    Nivel = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
-                    DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DataAlteracao = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Permissoes", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Permissoes_Usuarios_Id",
-                        column: x => x.Id,
-                        principalTable: "Usuarios",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -212,10 +223,9 @@ namespace SGIEscolar.Data.Migrations
                 column: "ProfessorId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Usuarios_LicencaId",
-                table: "Usuarios",
-                column: "LicencaId",
-                unique: true);
+                name: "IX_UsuariosPermissoes_UsuariosId",
+                table: "UsuariosPermissoes",
+                column: "UsuariosId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -224,19 +234,22 @@ namespace SGIEscolar.Data.Migrations
                 name: "Alunos");
 
             migrationBuilder.DropTable(
-                name: "Permissoes");
+                name: "Licencas");
+
+            migrationBuilder.DropTable(
+                name: "UsuariosPermissoes");
 
             migrationBuilder.DropTable(
                 name: "Turmas");
+
+            migrationBuilder.DropTable(
+                name: "Permissoes");
 
             migrationBuilder.DropTable(
                 name: "Usuarios");
 
             migrationBuilder.DropTable(
                 name: "Professores");
-
-            migrationBuilder.DropTable(
-                name: "Licencas");
 
             migrationBuilder.DropTable(
                 name: "Enderecos");

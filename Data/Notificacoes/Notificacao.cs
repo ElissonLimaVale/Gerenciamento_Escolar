@@ -1,5 +1,4 @@
-﻿
-namespace SGIEscolar.Data.Notificacoes
+﻿namespace SGIEscolar.Data.Notificacoes
 {
     public class Notificacao
     {

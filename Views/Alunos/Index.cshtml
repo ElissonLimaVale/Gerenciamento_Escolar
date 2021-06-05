@@ -1,0 +1,75 @@
+﻿@model List<AlunoViewModel>
+@section sitemap {
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home">Dashboard</a></li>
+        <li><a asp-controller="Alunos">Alunos</a></li>
+        <li>Lista</li>
+    </ol>
+}
+
+<div class="ui-widget-content">
+    <div class="widget-header">
+        <h2>Lista de Alunos</h2>
+    </div>
+    <div class="widget-body">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="input-group">
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="filtro" />
+                        <label class="form-label" for="form1">Buscar</label>
+                    </div>
+                </div>
+                <div class="">
+                    <a asp-action="Cadastrar" class="btn btn-default">
+                        Cadastrar
+                    </a>
+                </div>
+            </div>
+            <div class="striped" id="table-alunos">
+                <!-- AQUI É RENDERIZADO O TABULATOR -->
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="~/js/alunos/table.alunos.js"></script>
+}
+
+
+
+
+
+@*<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Nome da Mãe</th>
+            <th>Nome do Pai</th>
+            <th class="th-50">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var aluno in Model)
+        {
+            <tr>
+                <td>@aluno.Nome</td>
+                <td>@aluno.CPF</td>
+                <td>@aluno.NomeDaMae</td>
+                <td>@aluno.NomeDoPai</td>
+                <td class="btn-acoes">
+                    <a asp-controller="Alunos" asp-action="Editar" asp-route-id="@aluno.Id" class="btn btn-xs btn-default" title="Editar">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <a asp-controller="Alunos" asp-action="Deletar" asp-route-id="@aluno.Id" class="btn btn-xs btn-default" title="Deletar">
+                        <i class="fa fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<button class="btn btn-default" asp-action="Cadastrar">Cadastrar</button>*@
+
+
