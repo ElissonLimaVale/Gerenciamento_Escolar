@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Dapper;
 using KissLog;
 using SGIEscolar.Data.Interface;
 using SGIEscolar.Data.Models;
@@ -20,12 +21,16 @@ namespace SGIEscolar.Data.Service
         protected IMapper _mapper;
         protected IRepository<TEntity> _repository;
         protected readonly ILogger _logger;
-        public BaseService(IRepository<TEntity> repository, INotificador notificador, IMapper mapper, ILogger logger)
+        protected readonly IDapper _dapper;
+        protected readonly AutenticacaoService _autenticacao;
+        public BaseService(IRepository<TEntity> repository, INotificador notificador, IMapper mapper, ILogger logger, IDapper dapper, AutenticacaoService autenticacao)
         {
             this._repository = repository;
             this._notificador = notificador;
             this._mapper = mapper;
             this._logger = logger;
+            this._dapper = dapper;
+            this._autenticacao = autenticacao;
         }
 
         public virtual async Task<int> Adicionar(TEntityViewModel entity)
@@ -67,6 +72,44 @@ namespace SGIEscolar.Data.Service
         {
             return _mapper.Map<TEntityViewModel>(await _repository.BuscarObjeto(expression, includes));
         }
+        public virtual async Task<IEnumerable<TEntityViewModel>> BuscarPorFiltro(string filtro, string[] colunas, string[] includes = null)
+        {
+            var response = new List<TEntity>();
+            try
+            {
+                var table = typeof(TEntity).Name + "s";
+                var query = "BEGIN SELECT TOP 500 * FROM [dbo].[" + table + "] ";
+
+                // Inner Joins
+                if (includes == null)
+                    query += " WHERE ";
+                else
+                {
+                    foreach (var item in includes)
+                    {
+                        query += " INNER JOIN " + item + "s" + " on " + table + "." + item + "Id = " + item + ".Id ";
+                        if (Array.IndexOf(includes, item) == (includes.Length - 1))
+                            query += " WHERE ";
+                    }
+                }
+                // Colunas
+                foreach (var item in colunas)
+                {
+                    query += table + "." + item + " LIKE '%' + @filtro + '%' ";
+                    if (Array.IndexOf(colunas, item) < (colunas.Length - 1))
+                        query += " OR ";
+                }
+                var parametros = new DynamicParameters();
+                parametros.Add("filtro", filtro);
+                response = await _dapper.RetornaListaQueryAsync<TEntity>(query += " END", parametros);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return _mapper.Map<IEnumerable<TEntityViewModel>>(response);
+        }
+
 
         public void Notificar(string mensagem, bool state = false)
         {

@@ -31,14 +31,14 @@ namespace SGIEscolar.Controllers
             };
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _service.ListarTodos());
+            return View();
         }
 
-        public async Task<IActionResult> InformacoesPeriodo()
+        public IActionResult InformacoesPeriodo()
         {
-            return View(await _service.ListarTodos());
+            return View();
         }
 
         public async Task<IActionResult> Cadastrar()
@@ -57,7 +57,7 @@ namespace SGIEscolar.Controllers
                 if (OperacaoValida())
                 {
                     _notificador.Handle(new Notificacao("Aluno cadastrado com sucesso!", true));
-                    return View("Index", await _service.ListarTodos());
+                    return View("Index");
                 }
             }
             await CarregarDropDown(nameof(Cadastrar));
@@ -79,7 +79,7 @@ namespace SGIEscolar.Controllers
                 if (OperacaoValida())
                 {
                     _notificador.Handle(new Notificacao("Aluno atualizado com sucesso!", true));
-                    return View("Index", await _service.ListarTodos());
+                    return View("Index");
                 }
             }
             await CarregarDropDown(nameof(Editar));
@@ -94,9 +94,12 @@ namespace SGIEscolar.Controllers
             return View("Index", await _service.ListarTodos());
         }
 
-        public async Task<IActionResult> ListarTodos()
+        public async Task<IActionResult> Buscar(string filtro)
         {
-            return Json(await _service.ListarTodos());
+            if (string.IsNullOrEmpty(filtro))
+                return Json(await _service.ListarTodos());
+            else
+                return Json(await _service.BuscarPorFiltro(filtro, new string[] { "Id", "Nome", "CPF", "NomeDaMae", "NomeDoPai" }));
         }
 
         private async Task CarregarDropDown(string action)

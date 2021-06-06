@@ -21,7 +21,9 @@ namespace SGIEscolar.Data.Service
             UsuarioRepository repository, 
             INotificador notificador,  
             IMapper mapper, 
-            ILogger logger) : base(repository, notificador, mapper, logger)
+            ILogger logger,
+            IDapper dapper,
+            AutenticacaoService autenticacao) : base(repository, notificador, mapper, logger, dapper, autenticacao)
         {
             this._usuario = repository;
         }

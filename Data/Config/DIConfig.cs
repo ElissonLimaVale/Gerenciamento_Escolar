@@ -19,6 +19,8 @@ namespace SGIEscolar.Data.Config
             services.AddLogging(logging => { logging.AddKissLog(); });
 
             services.AddScoped<INotificador, Notificador>();
+            services.AddScoped<IDapper, BaseDapper>();
+            services.AddScoped<AutenticacaoService>();
 
             // Registro de injeção de dependência das classes
             services.AddScoped<AlunoRepository>();

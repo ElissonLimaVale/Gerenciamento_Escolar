@@ -1,7 +1,7 @@
 ﻿$(document).ready(() => {
     $.ajax({
         method: "Get",
-        url: "/Alunos/ListarTodos",
+        url: "/Alunos/Buscar",
     }).done((data) => {
         tableinfo.setData(data);
     }).fail();
@@ -26,6 +26,7 @@ var tableinfo = new Tabulator("#table-info", {
     paginationSizeSelector: [20, 30, 40, 50],
     placeholder: "Nenhum Aluno Encontrado!",
     dataLoaded: AddFunctionButtons,
+    locale: true,
     langs: pt_br
 });
 

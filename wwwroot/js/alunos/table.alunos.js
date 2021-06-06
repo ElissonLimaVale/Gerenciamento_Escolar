@@ -1,31 +1,51 @@
 ﻿$(document).ready(() => {
     $.ajax({
         method: "Get",
-        url: "/Alunos/ListarTodos",
+        url: "/Alunos/Buscar",
     }).done((data) => {
         tablealunos.setData(data);
     }).fail();
 });
 
+var methods = {
+    timeout: null,
+    search: (filtro) => {
+        $.ajax({
+            method: "Get",
+            url: "/Alunos/Buscar",
+            data: {
+                filtro: filtro
+            }
+        }).done((data) => {
+            LoadHide();
+            tablealunos.setData(data);
+        }).fail(() => {
+            LoadHide();
+            bootbox.error("Ops, ocorreu um erro inesperado ao tentar listar alunos, por favor atualize a página!");
+        });
+    }
+};
+
 var columns = [
-    {title: "id", field: "id", visible: false },
-    {title: "Nome", field: "nome" },
-    {title: "CPF", field: "cpf" },
-    {title: "Nome da Mãe", field: "nomeDaMae" },
+    { title: "id", field: "id", visible: false },
+    { title: "Nome", field: "nome" },
+    { title: "CPF", field: "cpf" },
+    { title: "Nome da Mãe", field: "nomeDaMae" },
     { title: "Nome do Pai", field: "nomeDoPai" },
     { title: "Ações", field: "", formatter: ButtonTable, width: 140 }
 ];
 
 var tablealunos = new Tabulator("#table-alunos", {
     data: [],
-    height: "400px",
+    height: "420px",
     layout: "fitColumns",
     columns: columns,
     pagination: "local",
-    paginationSize: 10,
+    paginationSize: 12,
     paginationSizeSelector: [20, 30, 40, 50],
     placeholder: "Nenhum Aluno Encontrado!",
     dataLoaded: AddFunctionButtons,
+    locale: true,
     langs: pt_br
 });
 
@@ -71,3 +91,9 @@ function AddFunctionButtons() {
         });
     });
 }
+
+$("#search").keyup(() => {
+    LoadShow();
+    clearTimeout(methods.timeout);
+    methods.timeout = setTimeout(function () { methods.search($("#search").val()) }, 380);
+});

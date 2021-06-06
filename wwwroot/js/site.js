@@ -20,123 +20,6 @@ $(document).ready(() => {
     });
 });
 
-var pt_br = {
-    "pt-br": {
-        "columns": {
-            "name": "Name",
-        },
-        "ajax": {
-            "loading": "Carregando",
-            "error": "Erro",
-        },
-        "groups": {
-            "item": "Item",
-            "items": "Items",
-        },
-        "pagination": {
-            "page_size": "Linhas Por Página ",
-            "page_title": "Show Page",
-            "first": "Primeiro",
-            "first_title": "Primeira Página",
-            "last": "Último",
-            "last_title": "Última Página",
-            "prev": "Anterior",
-            "prev_title": "Página Anterior",
-            "next": "Próximo",
-            "next_title": "Próxima Página",
-            "all": "Todos",
-        },
-        "headerFilters": {
-            "default": "Filtar Colunas...", //default header filter placeholder text
-            "columns": {
-                "name": "Filtrar Nome...", //replace default header filter text for column name
-            }
-        }
-    }
-};
-var bootbox = {
-    alert: (msg) => {
-        $.smallBox({
-            title: "Informações",
-            content: msg,
-            color: "#5384AF",
-            timeout: 5000,
-            icon: "fa fa-bell"
-        });
-    },
-    success: (msg) => {
-        $.smallBox({
-            title: "Mensagem",
-            content: "<i class='fa fa-clock-o'></i> <i>" + msg + "</i>",
-            color: "#659265",
-            iconSmall: "fa fa-check fa-2x fadeInRight animated",
-            timeout: 4000
-        });
-    },
-    error: (msg) => {
-        $.smallBox({
-            title: "Erro",
-            content: "<i class='fa fa-clock-o'></i> <i>" + msg + "</i>",
-            color: "#C46A69",
-            iconSmall: "fa fa-times fa-2x fadeInRight animated",
-            timeout: 4000
-        });
-    },
-    confirm: (content, method) => {
-        $.SmartMessageBox({
-            title: !!!content.title ? "" : content.title,
-            content: !!!content.message ? "" : content.message,
-            buttons: "[Sim][Não]"
-        }, (pressed) => {
-            if (pressed == "Sim") {
-                method();
-            }
-        });
-    },
-    notific_error: (msg) => {
-        $.bigBox({
-            title: "Notificação de erro:",
-            content: msg,
-            color: "#C46A69",
-            icon: "fa fa-warning shake animated",
-            //number: "1",
-            timeout: 6000
-        });
-    },
-    notific_alert: (msg) => {
-        $.bigBox({
-            title: "Notificação de informação:",
-            content: msg,
-            color: "#3276B1",
-            timeout: 8000,
-            icon: "fa fa-bell swing animated",
-            //number: "2"
-        });
-    },
-    notific_warning: (msg) => {
-        $.bigBox({
-            title: "Notificação de aviso!",
-            content: msg,
-            color: "#C79121",
-            timeout: 8000,
-            icon: "fa fa-shield fadeInLeft animated",
-            //number: "3"
-        });
-    },
-    notific_success: (msg) => {
-        $.bigBox({
-            title: "Notificação de sucesso!",
-            content: msg,
-            color: "#739E73",
-            timeout: 8000,
-            icon: "fa fa-check",
-            //number: "4"
-        }, function () {
-            closedthis();
-        });
-    }
-}
-
 function ValidateJson(jsonparams, acceptnull) {
     var response = true;
     for (var item in jsonparams) {
@@ -146,4 +29,13 @@ function ValidateJson(jsonparams, acceptnull) {
     }
     return response;
 }
+
+
+function LoadShow() {
+    $("#search").addClass("ui-autocomplete-loading");
+}
+function LoadHide() {
+    $("#search").removeClass("ui-autocomplete-loading");
+}
+
 
