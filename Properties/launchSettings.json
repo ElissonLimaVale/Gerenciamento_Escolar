@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "SGIEscolar": {
+    "SGIEscolar Development": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
@@ -23,28 +23,11 @@
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
     },
-    "DevelopmentElisson": {
+    "SGIEscolar Production": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "DevelopmentElisson"
-      },
-      "applicationUrl": "https://localhost:5001;http://localhost:5000"
-    },
-    "DevelopmentBruno": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "DevelopmentBruno"
-      },
-      "nativeDebugging": false,
-      "applicationUrl": "https://localhost:5001;http://localhost:5000"
-    },
-    "DevelopmentGabril": {
-      "commandName": "Project",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "DevelopmentGabriel"
+        "ASPNETCORE_ENVIRONMENT": "Production"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
     }
