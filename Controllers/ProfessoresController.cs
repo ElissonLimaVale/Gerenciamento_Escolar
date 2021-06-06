@@ -4,9 +4,9 @@ using SGIEscolar.ViewModels;
 
 namespace SGIEscolar.Controllers
 {
-    public class ProfessorController : BaseController
+    public class ProfessoresController : BaseController
     {
-        public ProfessorController(INotificador notificador) : base(notificador)
+        public ProfessoresController(INotificador notificador) : base(notificador)
         {
 
         }

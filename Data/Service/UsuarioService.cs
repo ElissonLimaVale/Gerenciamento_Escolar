@@ -17,15 +17,18 @@ namespace SGIEscolar.Data.Service
     public class UsuarioService : BaseService<Usuario, UsuarioViewModel>
     {
         private readonly UsuarioRepository _usuario;
+        
         public UsuarioService(
             UsuarioRepository repository, 
             INotificador notificador,  
             IMapper mapper, 
             ILogger logger,
             IDapper dapper,
-            AutenticacaoService autenticacao) : base(repository, notificador, mapper, logger, dapper, autenticacao)
+            
+        AutenticacaoService autenticacao) : base(repository, notificador, mapper, logger, dapper, autenticacao)
         {
             this._usuario = repository;
+            
         }
 
         public override async Task<int> Adicionar(UsuarioViewModel usuario)
@@ -51,13 +54,14 @@ namespace SGIEscolar.Data.Service
 
         public async Task Authenticar(UsuarioViewModel usuario, Microsoft.AspNetCore.Mvc.ControllerContext context)
         {
-            //var user = new UsuarioViewModel
+            //  var user = new UsuarioViewModel
             //{
-            //    Nome = "Elisson Vale",
-            //    Email = "elima@doxplan.com",
+            //    Nome = "Bruno",
+            //    Email = "bruno@gmail.com",
             //    Senha = "1234"
             //};
             //await Adicionar(user);
+            
             var login = await BuscarObjeto(x => x.Email == usuario.Email && x.Id != new Guid());
             if(login == null || !BCrypt.Net.BCrypt.Verify(usuario.Senha, login.Senha))
             {

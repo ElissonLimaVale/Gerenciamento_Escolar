@@ -25,29 +25,35 @@ namespace SGIEscolar.Data.Service
 
         public override async Task<int> Adicionar(TurmaViewModel turma)
         {
-            await base.Adicionar(turma);
+             await base.Adicionar(turma);
             //var turmas = new List<TurmaViewModel>();
-            //turmas.Add(new TurmaViewModel { 
+            //turmas.Add(new TurmaViewModel
+            //{
             //    Nome = "Primeiro Ano A",
             //    Serie = "1º A"
             //});
-            //turmas.Add(new TurmaViewModel { 
+            //turmas.Add(new TurmaViewModel
+            //{
             //    Nome = "Primeiro Ano B",
             //    Serie = "1º B"
             //});
-            //turmas.Add(new TurmaViewModel { 
+            //turmas.Add(new TurmaViewModel
+            //{
             //    Nome = "Segundo Ano A",
             //    Serie = "2º A"
             //});
-            //turmas.Add(new TurmaViewModel { 
+            //turmas.Add(new TurmaViewModel
+            //{
             //    Nome = "Segundo Ano B",
             //    Serie = "2º B"
             //});
-            //turmas.Add(new TurmaViewModel { 
+            //turmas.Add(new TurmaViewModel
+            //{
             //    Nome = "Terceiro Ano A",
             //    Serie = "3º A"
             //});
-            //turmas.Add(new TurmaViewModel { 
+            //turmas.Add(new TurmaViewModel
+            //{
             //    Nome = "Terceiro Ano B",
             //    Serie = "3º B"
             //});
