@@ -17,15 +17,18 @@ namespace SGIEscolar.Data.Service
     public class UsuarioService : BaseService<Usuario, UsuarioViewModel>
     {
         private readonly UsuarioRepository _usuario;
+        
         public UsuarioService(
             UsuarioRepository repository, 
             INotificador notificador,  
             IMapper mapper, 
             ILogger logger,
             IDapper dapper,
-            AutenticacaoService autenticacao) : base(repository, notificador, mapper, logger, dapper, autenticacao)
+            
+        AutenticacaoService autenticacao) : base(repository, notificador, mapper, logger, dapper, autenticacao)
         {
             this._usuario = repository;
+            
         }
 
         public override async Task<int> Adicionar(UsuarioViewModel usuario)
