@@ -1,12 +1,4 @@
-﻿$(document).ready(() => {
-    $.ajax({
-        method: "Get",
-        url: "/Alunos/Buscar",
-    }).done((data) => {
-        tablealunos.setData(data);
-    }).fail();
-});
-
+﻿
 var methods = {
     timeout: null,
     search: (filtro) => {
@@ -37,6 +29,7 @@ var columns = [
 
 var tablealunos = new Tabulator("#table-alunos", {
     data: [],
+    ajaxURL: "/Alunos/Buscar",
     height: "420px",
     layout: "fitColumns",
     columns: columns,

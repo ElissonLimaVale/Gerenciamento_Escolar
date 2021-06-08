@@ -16,7 +16,7 @@ namespace SGIEscolar.Data.Mapping
             builder.Property(x => x.NomeDoPai).HasMaxLength(100).HasColumnType("varchar");
 
             //relacionamentos 
-            builder.HasOne(x => x.Endereco).WithOne().OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Endereco).WithOne();
 
             builder.ToTable("Alunos");
         }

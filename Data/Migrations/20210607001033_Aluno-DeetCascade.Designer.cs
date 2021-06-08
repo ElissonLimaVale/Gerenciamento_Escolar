@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SGIEscolar.Data.Context;
 
 namespace SGIEscolar.Data.Migrations
 {
     [DbContext(typeof(SGIEscolarContext))]
-    partial class SGIEscolarContextModelSnapshot : ModelSnapshot
+    [Migration("20210607001033_Aluno-DeetCascade")]
+    partial class AlunoDeetCascade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
