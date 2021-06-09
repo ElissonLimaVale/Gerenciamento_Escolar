@@ -11,21 +11,28 @@ label {
 }
 
 .login-container {
+    display: block;
+    justify-content: center;
     width: 96%;
+    align-items: center;
     margin: 40px 0px;
 }
+
 #rigth-log {
     display: flex;
     justify-content: center;
-    align-items:  baseline;
+    align-items: center;
+    flex-wrap: wrap;
 }
+
 #formulario {
     display: block;
     width: 90%;
-    margin: 50px 5%;
+    margin: 40px 5%;
     border: none;
     border-radius: 5px !important;
 }
+
 #btn-entrar {
     border: none;
     padding: 10px 40px !important;
@@ -38,11 +45,13 @@ label {
     width: 60%;
     margin: 50px 20%;
 }
+
 .input-container {
     border-radius: 5px;
     background-color: #f9f9f9;
     padding: 5px !important;
 }
+
 .input {
     touch-action: none;
     outline: none;
@@ -57,10 +66,12 @@ label {
     padding: 5px 15px;
     display: flex;
 }
+
 #recuperar-senha {
     float: right !important;
     margin-top: 5px !important;
 }
+
 #title {
     position: absolute;
     left: 20px;
