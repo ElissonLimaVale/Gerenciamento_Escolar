@@ -4555,6 +4555,8 @@ svg {
 }
 
 #grafic-notas {
+    /*background-color: mediumslateblue;*/
+    display: block;
     border: 1px solid rgba(0,0,0, .2);
     border-radius: 2px;
     margin-top: 10px;
@@ -4563,6 +4565,17 @@ svg {
 }
 
 #grafic-falts {
+    /*background-color: mediumslateblue;*/
+    display: block;
+    border: 1px solid rgba(0,0,0, .2);
+    border-radius: 2px;
+    margin-top: 10px;
+    height: 400px !important;
+    margin-bottom: 30px;
+}
+#grafic-aval {
+    /*background-color: mediumslateblue;*/
+    display: block;
     border: 1px solid rgba(0,0,0, .2);
     border-radius: 2px;
     margin-top: 10px;
