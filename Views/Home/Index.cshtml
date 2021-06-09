@@ -9,45 +9,32 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bem Vindo</h1>
-    <p>Sistema de Gerenciamento Escolar</p>
+    <h1 class="display-4">Dashboard</h1>
+    <p>Inforações Gerais da Escola</p>
 </div>
 <div class="widget-body">
-    <header>
-        Cadastro de Usuário
-    </header>
-    <form data-ajax="true" class="smart-form" method="post" asp-controller="Home" asp-action="Index">
-        <fieldset>
-            <div class="row">
-                <section class="col col-4">
-                    <label class="">Nome</label>
-                    <select class="form-control" asp-for="Nome">
-                        <option value="">Selecione uma opção</option>
-                        <option value="">Elisson Vale</option>
-                        <option value="">Marcos Carvalho</option>
-                    </select>
-                </section>
-                <section class="col col-4">
-                    <label class="">Email</label>
-                    <select class="form-control" asp-for="Email">
-                        <option value="">Selecione uma opção</option>
-                        <option value="">elissonvale@gmail.com</option>
-                        <option value="">MadrugadaZulu@gmail.com</option>
-                    </select>
-                </section>
-                <section class="col col-4">
-                    <label class="">Senha</label>
-                    <input asp-for="Senha" type="password" class="form-control" />
-                </section>
-            </div>
-        </fieldset>
-    </form>
 
-    <fieldset>
-        <div class="widget-body">
-            <div class="striped col col-12" id="table-alunos">
-                <!-- AQUI É RENDERIZADO O TABULATOR -->
-            </div>
-        </div>
-    </fieldset>
+    <header>
+        Média de Notas Entre Trumas <i class="fa fa-bar-chart-o"></i>
+    </header>
+    <div id="grafic-notas" class="row">
+        <svg>
+        <!-- Aqui é renderizado o grafico -->
+        </svg>
+    </div>
+
+    <header>
+        Média de Faltas dos Alunos Entre Turmas <i class="fa fa-bar-chart-o"></i>
+    </header>
+    <div id="grafic-falts" class="row">
+        <svg>
+            <!-- Aqui é renderizado o grafico -->
+        </svg>
+    </div>
+
 </div>
+
+
+@section Scripts {
+    <script src="~/js/dashboard/grafics.js"></script>
+}
