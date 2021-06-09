@@ -1,7 +1,8 @@
 ﻿/*################################# Tabulator Style ######################################*/
 .tabulator {
-    border-color: rgba(0,0,0,.0);
     background-color: #f5f5f5 !important;
+    border: 1px solid rgba(0,0,0, .2);
+    border-radius: 2px;
     margin: 10px !important;
 }
 
