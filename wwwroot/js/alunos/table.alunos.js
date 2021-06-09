@@ -34,7 +34,7 @@ var tablealunos = new Tabulator("#table-alunos", {
     layout: "fitColumns",
     columns: columns,
     pagination: "local",
-    paginationSize: 12,
+    paginationSize: 10,
     paginationSizeSelector: [20, 30, 40, 50],
     placeholder: "Nenhum Aluno Encontrado!",
     dataLoaded: AddFunctionButtons,
