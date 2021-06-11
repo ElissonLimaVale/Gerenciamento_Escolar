@@ -25,7 +25,7 @@ namespace SGIEscolar.Data.Service
 
         public override async Task<int> Adicionar(TurmaViewModel turma)
         {
-            //await base.Adicionar(turma);
+             await base.Adicionar(turma);
             //var turmas = new List<TurmaViewModel>();
             //turmas.Add(new TurmaViewModel
             //{
