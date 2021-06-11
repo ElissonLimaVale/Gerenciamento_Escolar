@@ -1,5 +1,82 @@
 ﻿
 
-<div>
-    <h1>Tela Inicial</h1>
+@model List<ProfessorViewModel>
+@section sitemap {
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+        <li><a asp-controller="Professores" asp-action="Index">Professores</a></li>
+        <li>Lista</li>
+    </ol>
+}
+
+<div class="ui-widget-content">
+    <div class="widget-header">
+        <div class="text-center">
+            <h2>Lista de Professores</h2>
+        </div>
+    </div>
+    <div class="widget-body">
+        <fieldset>
+            <div class="row">
+                <section class="col-md-3">
+                    <div class="input-group">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <input id="search" type="text" class="form-control" placeholder="Filtrar" />
+                        </div>
+                    </div>
+                </section>
+                <section class="col-md-3 right">
+                    <a asp-action="Cadastro" class="btn btn-default right">
+                        <i class="fa fa-dropbox"></i>
+                        Adicionar Professor
+                    </a>
+                </section>
+            </div> 
+        </fieldset>
+
+        <div class="row">
+            <div class="striped" id="table-professor">
+                <!-- AQUI É RENDERIZADO O TABULATOR -->
+            </div>
+        </div>
+    </div>
 </div>
+@section Scripts {
+    <script src="~/js/professor/table.professor.js"></script>
+}
+
+
+@*<table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Disciplina</th>
+                <th>Endereco</th>
+                <th class="th-50">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var professor in Model)
+            {
+                <tr>
+                    <td>@professor.Nome</td>
+                    <td>@professor.Email</td>
+                    <td>@professor.Telefone</td>
+                    <td>@professor.Disciplina</td>
+                    <td>@professor.Endereco</td>
+                    <td class="btn-acoes">
+                        <a asp-controller="Professor" asp-action="Editar" asp-route-id="@professor.Id" class="btn btn-xs btn-default" title="Editar">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <a asp-controller="Professores" asp-action="Deletar" asp-route-id="@professor.Id" class="btn btn-xs btn-default" title="Deletar">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <button class="btn btn-default" asp-action="Cadastrar">Cadastrar</button>*@

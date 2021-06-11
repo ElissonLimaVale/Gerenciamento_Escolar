@@ -1,0 +1,118 @@
+﻿@model ProfessorViewModel
+@{
+    var ListTurmas = ViewBag.Turmas as List<TurmaViewModel>;
+}
+
+<form class="smart-form" method="post" asp-action="@ViewBag.Action" style="padding: 10px;">
+    <header>
+        Informações do Professor
+    </header>
+    <fieldset>
+        <div class="row">
+            <section class="col-md-4">
+                <label class="">Nome do Professor</label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger validate-fail"></span>
+            </section>
+            <section class="col-md-4">
+                <label class="">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger validate-fail"></span>
+            </section>
+            <section class="col-md-4">
+                <label class="">Telefone</label>
+                <input asp-for="Telefone" class="form-control" />
+                <span asp-validation-for="Telefone" class="text-danger validate-fail"></span>
+            </section>
+        </div>
+        <div class="row">
+            <section class="col-md-4">
+                <label class="">Disciplina</label>
+                <input asp-for="Desciplina" class="form-control" />
+                <span asp-validation-for="Desciplina" class="text-danger validate-fail"></span>
+            </section>
+            <section class="col-md-4">
+                <label class="">Endereço</label>
+                <input asp-for="EnderecoId" class="form-control" />
+                <span asp-validation-for="EnderecoId" class="text-danger validate-fail"></span>
+            </section>
+            @*<section class="col-md-4">
+                <label class="">turmas</label>
+                <select asp-for="turmas" class="form-control">
+                    <option value="">selecione uma opção</option>
+                    @foreach (var item in listturmas)
+                    {
+                        <option value="@item.id">@item.nome</option>
+                    }
+                </select>
+                <span asp-validation-for="turmas" class="text-danger validate-fail"></span>
+            </section>*@
+        </div>
+    </fieldset>
+    <header>
+        Informações de Endereço
+    </header>
+    <fieldset>
+        <div class="row">
+            <section class="col-md-4">
+                <label class="">CEP</label>
+                <input asp-for="Endereco.Cep" class="form-control mascara-cep" />
+                <span asp-validation-for="Endereco.Cep" class="text-danger validate-fail"></span>
+            </section>
+            <section class="col-md-4">
+                <label class="">País</label>
+                <input asp-for="Endereco.Pais" class="form-control" />
+                <span asp-validation-for="Endereco.Pais" class="text-danger validate-fail"></span>
+            </section>
+            <section class="col-md-4">
+                <label class="">Estado</label>
+                <input asp-for="Endereco.Estado" class="form-control" />
+                <span asp-validation-for="Endereco.Estado" class="text-danger validate-fail"></span>
+            </section>
+        </div>
+        <div class="row">
+            <section class="col-md-4">
+                <label class="">Cidade</label>
+                <input asp-for="Endereco.Cidade" class="form-control" />
+                <span asp-validation-for="Endereco.Cidade" class="text-danger validate-fail"></span>
+            </section>
+            <section class="col-md-4">
+                <label class="">Rua</label>
+                <input asp-for="Endereco.Rua" class="form-control" />
+                <span asp-validation-for="Endereco.Rua" class="text-danger validate-fail"></span>
+            </section>
+            <section class="col-md-4">
+                <label class="">Número</label>
+                <input asp-for="Endereco.Numero" class="form-control" />
+                <span asp-validation-for="Endereco.Numero" class="text-danger validate-fail"></span>
+            </section>
+        </div>
+        <div class="row">
+            <section class="col-md-12">
+                <label class="">Complemento</label>
+                <textarea asp-for="Endereco.Complemento" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Endereco.Complemento" class="text-danger validate-fail"></span>
+            </section>
+        </div>
+    </fieldset>
+    <!-- CAMPOS IMPLICITOS -->
+    @if (ViewBag.Action != "Cadastrar")
+    {
+        <input asp-for="Id" hidden />
+        <input asp-for="EnderecoId" hidden />
+        <input asp-for="Endereco.Id" hidden />
+    }
+
+    <footer>
+        <div class="right">
+            <a asp-action="Index" class="btn btn-default">
+                <i class="fa fa-arrow-left"></i>
+                Voltar
+            </a>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-check"></i>
+                Salvar
+            </button>
+        </div>
+    </footer>
+</form>

@@ -1,8 +1,25 @@
 ﻿@model ProfessorViewModel
+@section sitemap {
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+        <li><a asp-controller="Professores" asp-action="Index">Professores</a></li>
+        <li>Matricular</li>
+    </ol>
+}
 
-<div>
-    Tela de cadastro
+<div class="ui-widget-content">
+    <div class="widget-header">
+        <div class="text-center">
+            <h2>@ViewBag.Title</h2>
+        </div>
+    </div>
+    <div class="widget-body no-padding">
+        <partial name="_PartialFormulario" model="Model" />
+    </div>
 </div>
-<div>
-    <partial name="PartialFormularioProfessor" model="@Model"></partial>
-</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
