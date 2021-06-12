@@ -29,6 +29,8 @@ namespace SGIEscolar.Data.Config
             services.AddScoped<UsuarioService>();
             services.AddScoped<TurmaRepository>();
             services.AddScoped<TurmaService>();
+            services.AddScoped<ProfessorRepository>();
+            services.AddScoped<ProfessorService>();
 
 
             return services;

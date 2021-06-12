@@ -1,11 +1,4 @@
-﻿$(document).ready(() => {
-    $.ajax({
-        method: "Get",
-        url: "/Professores/Buscar",
-    }).done((data) => {
-        tableprofessor.setData(data);
-    }).fail();
-});
+﻿
 
 var methods = {
     timeout: null,
@@ -21,7 +14,7 @@ var methods = {
             tableprofessor.setData(data);
         }).fail(() => {
             LoadHide();
-            bootbox.error("Ops, ocorreu um erro inesperado ao tentar listar alunos, por favor atualize a página!");
+            bootbox.error("Ops, ocorreu um erro inesperado ao tentar listar Professores, por favor atualize a página!");
         });
     }
 };
@@ -31,17 +24,17 @@ var columns = [
     { title: "Nome", field: "nome" },
     { title: "Email", field: "email" },
     { title: "Telefone", field: "telefone" },
-    { title: "Disciplina", field: "disciplina" },
-    { title: "Endereco", field: "endereco" },
+    { title: "Disciplina", field: "desciplina" },
+    { title: "Endereco", field: "endereco.rua" },
     { title: "Ações", field: "", formatter: ButtonTable, width: 140 }
 ];
 
-var tablealunos = new Tabulator("#table-professor", {
-    data: [],
+var tableprofessores = new Tabulator("#table-professor", {
     height: "420px",
     layout: "fitColumns",
     columns: columns,
     pagination: "local",
+    ajaxURL: "/Professores/ListarTodos",
     paginationSize: 12,
     paginationSizeSelector: [20, 30, 40, 50],
     placeholder: "Nenhum Professor Encontrado!",
