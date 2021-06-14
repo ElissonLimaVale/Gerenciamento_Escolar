@@ -4,16 +4,12 @@
 }
 @section sitemap {
     <ol class="breadcrumb">
-        <li><a asp-controller="Home">Dashboard</a></li>
+        <li><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
     </ol>
 }
 
-<div class="text-center">
-    <h1 class="display-4">Dashboard</h1>
-    <p>Inforações Gerais da Escola</p>
-</div>
-<div class="widget-body">
-
+@using (Html.BeginWidget("Dashboard", "Inforações Gerais da Instituiçao de Ensino")) {
+<div class="padding-10">
     <header>
         Média de Notas Entre Trumas <i class="fa fa-bar-chart-o"></i>
     </header>
@@ -40,8 +36,8 @@
             <!-- Aqui é renderizado o grafico -->
         </svg>
     </div>
-
 </div>
+}
 
 
 @section Scripts {

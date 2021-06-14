@@ -1,6 +1,6 @@
 ﻿
 $(function () {
-    /* BASIC ;*/
+/* BASIC ;*/
     var responsiveHelper_dt_basic = undefined;
     var responsiveHelper_datatable_fixed_column = undefined;
     var responsiveHelper_datatable_col_reorder = undefined;
@@ -14,8 +14,8 @@ $(function () {
 
     var otable = $('#datatable_fixed_column').DataTable({
         //"bFilter": true,
-        //"bInfo": false,
-        //"bLengthChange": false
+        //"bInfo": true,
+        //"bLengthChange": true,
         //"bAutoWidth": false,
         //"bPaginate": false,
         //"bStateSave": true // saves sort state using localStorage
@@ -24,7 +24,24 @@ $(function () {
             "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
         "autoWidth": true,
         "oLanguage": {
-            "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>'
+            "sSearch": '<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>',
+            "sInfoEmpty": "Tabela vazía",
+
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "Nenhum resultado encontrado",
+            "sEmptyTable": "Nenhum dado disponível",
+            "sInfo": "Mostrando _START_ registros de _END_, total entre todas as páginas _TOTAL_",
+            "sInfoEmpty": "Mostrando 0 registros de 0, total entre todas as páginas 0",
+            "sInfoFiltered": "(filtrado de um total de _MAX_ registros)",
+            
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Próximo",
+                "sPrevious": "Anterior"
+            }
         },
         "preDrawCallback": function () {
             // Initialize the responsive datatables helper once.
@@ -37,8 +54,7 @@ $(function () {
         },
         "drawCallback": function (oSettings) {
             responsiveHelper_datatable_fixed_column.respond();
-        }
-
+        },
     });
 
     // custom toolbar

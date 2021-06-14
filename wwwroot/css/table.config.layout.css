@@ -1,9 +1,9 @@
 ﻿/*################################# Tabulator Style ######################################*/
 .tabulator {
-    background-color: #f5f5f5 !important;
-    border: 1px solid rgba(0,0,0, .2);
-    border-radius: 2px;
-    margin: 10px !important;
+    border: none !important;
+    background-color: rgba(0,0,0,0) !important;
+    border-top: 1px solid rgba(0,0,0, .2)!important;
+    margin: 10px 0px !important;
 }
 
 .tabulator-table {
@@ -15,12 +15,15 @@
 }
 
 .tabulator .tabulator-header {
+    border-right: none !important;
     border-bottom: 1px solid rgba(0,0,0,.1);
     border-color: rgba(0,0,0,.05);
 }
 
 .tabulator-col-content {
-    background-image: linear-gradient( to top, #fefefe, #f1f1f1) !important;
+    border-right: none !important;
+    /*background-image: linear-gradient( to top, #fefefe, #f1f1f1) !important;*/
+    background-color: rgba(0,0,0,0) !important;
     border-color: rgba(0,0,0,.05);
 }
 
@@ -30,9 +33,10 @@
 }
 
 .tabulator-cell {
-    text-align: center;
+    border-right: none !important;
+    /*text-align: center;*/
     color: rgba(0,0,0,.5);
-    padding: 4px 0px !important;
+    padding: 4px 10px !important;
     border-color: rgba(0,0,0,.03);
 }
 
@@ -41,6 +45,7 @@
 }
 
 .tabulator .tabulator-header .tabulator-col {
+    border-right: none !important;
     border-color: rgba(0,0,0,.05);
 }
 
@@ -57,11 +62,12 @@
 }
 
 .tabulator-row-even {
-    background-color: #f8f8f8 !important;
+    /*background-color: #f8f8f8 !important;*/
 }
 
 .tabulator-footer {
-    background-image: linear-gradient( to top, #fefefe, #fafafa) !important;
+    /*background-image: linear-gradient( to top, #fefefe, #fafafa) !important;*/
+    background-color: rgba(0,0,0,0) !important;
     padding: 10px 10px !important;
     border-top: 1px solid rgba(0,0,0,.04) !important;
 }
@@ -98,7 +104,8 @@
 
 
 .tabulator-footer {
-    background-image: linear-gradient( to top, #f1f1f1, #fdfcfc) !important;
+    /*background-image: linear-gradient( to top, #f1f1f1, #fdfcfc) !important;*/
+    background-color: rgba(0,0,0,0) !important;
     padding: 10px 10px !important;
     border-top: 1px solid rgba(0,0,0,.1) !important;
     border-bottom: none !important;
@@ -126,7 +133,7 @@
 }
 
 .tabulator-page:hover {
-    /*background-color: #22b2cc !important;*/
+    background-color: #22b2cc !important;
     color: black !important;
 }
 
@@ -142,16 +149,16 @@
     background-color: #fafafa;
 }
 
-    .tabulator-placeholder:hover {
-        background-color: #e7f0f2;
-    }
+.tabulator-placeholder:hover {
+    background-color: #e7f0f2;
+}
 
-    .tabulator-placeholder span {
-        font-size: 14px !important;
-        font-weight: 200 !important;
-        color: rgba(0,0,0,.9) !important;
-        padding: 18px 0px !important;
-    }
+.tabulator-placeholder span {
+    font-size: 14px !important;
+    font-weight: 200 !important;
+    color: rgba(0,0,0,.9) !important;
+    padding: 18px 0px !important;
+}
 
 /*############################## SPAN DE VALIDAÇÃO ##########################*/
 .validate-fail {
@@ -175,4 +182,37 @@
 }
 
 
+/* ######################################### Table Style Jquery Data Table ######################### */
+table {
+    border: none !important;
+}
+thead {
+    border: none !important;
+}
+th {
+    border: none !important;
+    background-color: #e6e6e6 !important;
+}
+td {
+    padding: 5px 10px !important;
+}
+tr {
+    border-color: rgba(0,0,0,.1) !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
 
+.dt-toolbar-footer {
+    border-color: rgba(0,0,0,.1) !important;
+}
+.even {
+    background-color: rgba(0,0,0,.05) !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.sorting {
+    border: none !important;
+}
+.sorting_asc {
+    background-color: rgba(0,0,0,.12) !important;
+}

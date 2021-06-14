@@ -1,4 +1,7 @@
 ﻿@model List<AlunoViewModel>
+@{ 
+    ViewData["title"] = "Alunos ";
+}
 @section sitemap {
     <ol class="breadcrumb">
         <li><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
@@ -6,75 +9,28 @@
         <li>Lista</li>
     </ol>
 }
-
-<div class="ui-widget-content">
-    <div class="widget-header">
-        <div class="text-center">
-            <h2>Lista de Alunos</h2>
-        </div>
-    </div>
-    <div class="widget-body">
-        <fieldset>
-            <div class="row">
-                <section class="col-md-3">
-                    <div class="input-group">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            <input id="search" type="text" class="form-control" placeholder="Filtrar" />
-                        </div>
-                    </div>
-                </section>
-                <section class="col-md-3 right">
-                    <a asp-action="Cadastrar" class="btn btn-default right">
-                        <i class="fa fa-arrow-circle-o-right"></i>
-                        Matricular
-                    </a>
-                </section>
+@using (Html.BeginWidget("Lista de Alunos", ""))
+{
+    <div class="row">
+        <section class="col-md-3">
+            <div class="input-group">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input id="search" type="text" class="form-control" placeholder="Filtrar" />
+                </div>
             </div>
-        </fieldset>
-
-        <div class="row" style="display: block;">
-            <div class="striped" id="table-alunos">
-                <!-- AQUI É RENDERIZADO O TABULATOR -->
-            </div>
-        </div>
+        </section>
+        <section class="col-md-9 right">
+            <a asp-action="Cadastrar" class="btn btn-default right">
+                <i class="fa fa-arrow-circle-o-right"></i>
+                Matricular
+            </a>
+        </section>
     </div>
-</div>
+    <div id="table-alunos" width="100%">
+        AQUI É RENDERIZADO O TABULATOR
+    </div>
+}
 @section Scripts {
     <script src="~/js/alunos/table.alunos.js"></script>
 }
-
-
-@*<table>
-    <thead>
-        <tr>
-            <th>Nome</th>
-            <th>CPF</th>
-            <th>Nome da Mãe</th>
-            <th>Nome do Pai</th>
-            <th class="th-50">Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var aluno in Model)
-        {
-            <tr>
-                <td>@aluno.Nome</td>
-                <td>@aluno.CPF</td>
-                <td>@aluno.NomeDaMae</td>
-                <td>@aluno.NomeDoPai</td>
-                <td class="btn-acoes">
-                    <a asp-controller="Alunos" asp-action="Editar" asp-route-id="@aluno.Id" class="btn btn-xs btn-default" title="Editar">
-                        <i class="fa fa-pencil"></i>
-                    </a>
-                    <a asp-controller="Alunos" asp-action="Deletar" asp-route-id="@aluno.Id" class="btn btn-xs btn-default" title="Deletar">
-                        <i class="fa fa-trash"></i>
-                    </a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-<button class="btn btn-default" asp-action="Cadastrar">Cadastrar</button>*@
-
-

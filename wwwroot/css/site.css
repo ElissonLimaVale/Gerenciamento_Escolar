@@ -4582,3 +4582,36 @@ svg {
     height: 400px !important;
     margin-bottom: 30px;
 }
+
+.dropdown-menu {
+    width: 50% !important;
+    max-width: 350px !important;
+    min-width: 180px !important;
+}
+.dropdown-item {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+}
+
+.btns-acoes {
+    width: 10% !important;
+    max-width: 200px !important;
+    min-width: 120px !important;
+}
+
+.footer {
+    background-color: #3445b4 !important;
+    color: #fff;
+}
+input, .input, textarea, select {
+    /*padding: 10px !important;*/
+    font-size: 14px;
+    border-radius: 2px !important;
+}
+.input-group {
+    border-radius: 2px !important;
+}
+
+.margin-10 {
+    margin: 10px !important;
+}

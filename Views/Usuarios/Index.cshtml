@@ -1,0 +1,37 @@
+﻿@model List<UsuarioViewModel>
+
+@section sitemap {
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+        <li><a asp-controller="Usuarios" asp-action="Index">Usuários</a></li>
+        <li>Lista</li>
+    </ol>
+}
+
+@using (Html.BeginWidget("Lista de Usuários", "Verifique suas permissões para realizar alterações.")) {
+    @using (Html.BeginTable()) { 
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th class="btns-acoes"> Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model) {
+                <tr>
+                    <td>@user.Nome</td>
+                    <td>@user.Email</td>
+                    <td class="btns-acoes">
+                        <div class="btn-group">
+                            <a asp-action="Visualizar" asp-route-id="@user.Id" class="btn btn-xs btn-default" title="Visualizar"><i class="fa fa-eye"></i></a>
+                            <a asp-action="Editar" asp-route-id="@user.Id" class="btn btn-xs btn-default" title="Editar"><i class="fa fa-pencil"></i></a>
+                            <a data-url="Usuarios/Excluir/@user.Id"  class="btn btn-xs btn-default confirmaDelete" title="Excluir"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                }
+        </tbody>
+    }
+}
+

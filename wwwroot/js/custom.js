@@ -1,46 +1,26 @@
 ﻿$(document).ready(function () {
     $('.confirmaDelete').click(function () {
         let url = $(this).attr('data-url');
-        $('#dialog_confirma').dialog({
-            autoOpen: false,
-            open: function (event, ui) {
-                $(".ui-dialog-titlebar-close").remove();
-            },
-            width: 600,
-            resizable: false,
-            modal: true,
-            title: "Tem Certeza ?",
-            buttons: [{
-                html: "<i class='fa fa-trash-o'></i>&nbsp; Sim, Excluir",
-                "class": "btn btn-danger",
-                click: function () {
-                    window.location.href = url;
-                    $(this).dialog("close");
-                }
-            }, {
-                html: "<i class='fa fa-times'></i>&nbsp; Cancelar",
-                "class": "btn btn-default",
-                click: function () {
-                    $(this).dialog("close");
-                }
-            }]
-        }).dialog('open');
+        console.log(url);
+        bootbox.confirm({ title: "Tem certeza que deseja excluir o(s) item(s)?", message: "Esta ação é irreverssível!" }, () => {
+            window.location.href = "/"+url;
+        });
         return false;
     });
 
 
-    $("#empresaDefault").change(() => {
-        sessionStorage.setItem("empresaDefault", $("#empresaDefault option:selected").val());
-    });
+    //$("#empresaDefault").change(() => {
+    //    sessionStorage.setItem("empresaDefault", $("#empresaDefault option:selected").val());
+    //});
 
-    verificaEmpresaDefault();
+    //verificaEmpresaDefault();
 });
 
-function verificaEmpresaDefault() {
-    let empresaDefault = sessionStorage.getItem("empresaDefault");
-    if (empresaDefault != null && empresaDefault != 'null' && empresaDefault != undefined) {
-        $("#empresaDefault").val(empresaDefault);
-    }
-}
+//function verificaEmpresaDefault() {
+//    let empresaDefault = sessionStorage.getItem("empresaDefault");
+//    if (empresaDefault != null && empresaDefault != 'null' && empresaDefault != undefined) {
+//        $("#empresaDefault").val(empresaDefault);
+//    }
+//}
 
 

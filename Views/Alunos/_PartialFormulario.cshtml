@@ -1,99 +1,38 @@
 ﻿@model AlunoViewModel
 @{ 
-    var ListTurmas = ViewBag.Turmas as List<TurmaViewModel>;
+    var ListTurmas = ViewBag.Turmas as List<SelectListItem>;
 }
 
-<form class="smart-form" method="post" asp-action="@ViewBag.Action" style="padding: 10px;">
-    <header>
-        Informações do Aluno
-    </header>
-    <fieldset>
-        <div class="row">
-            <section class="col-md-4">
-                <label class="">Nome do Aluno</label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger validate-fail"></span>
-            </section>
-            <section class="col-md-4">
-                <label class="">CPF</label>
-                <input asp-for="CPF" class="form-control mascara-cpf" />
-                <span asp-validation-for="CPF" class="text-danger validate-fail"></span>
-            </section>
-            <section class="col-md-4">
-                <label class="">Data de Nascimento</label>
-                <input type="data" asp-for="DataNascimento" class="form-control mascara-data" />
-                <span asp-validation-for="DataNascimento" class="text-danger validate-fail"></span>
-            </section>
+@using (Html.BeginFormCustom("form-cadastro-aluno", "Infoemações do Aluno", ViewBag.Action as string))
+{
+    @using (Html.BeginFieldSetCustom())
+    {
+        <div class="col-md-12">
+            @Html.TextBoxCustomFor(x => x.Nome, 4, icone: "fa fa-user")
+            @Html.TextBoxCustomFor(x => x.CPF, 4, icone: "fa fa-child", htmlAttributes: new { @class = "mascara-cpf" })
+            @Html.TextBoxCustomFor(x => x.DataNascimento, 4, icone: "fa fa-calendar-o", htmlAttributes: new { @class = "mascara-data", @type = "data" })
         </div>
-        <div class="row">
-            <section class="col-md-4">
-                <label class="">Nome da Mãe</label>
-                <input asp-for="NomeDaMae" class="form-control" />
-                <span asp-validation-for="NomeDaMae" class="text-danger validate-fail"></span>
-            </section>
-            <section class="col-md-4">
-                <label class="">Nome do Pai</label>
-                <input asp-for="NomeDoPai" class="form-control" />
-                <span asp-validation-for="NomeDoPai" class="text-danger validate-fail"></span>
-            </section>
-            <section class="col-md-4">
-                <label class="">Turma</label>
-                <select asp-for="TurmaId" class="form-control">
-                    <option value="">Selecione uma opção</option>
-                    @foreach(var item in ListTurmas) { 
-                        <option value="@item.Id">@item.Nome</option>
-                    }
-                </select>
-                <span asp-validation-for="TurmaId" class="text-danger validate-fail"></span>
-            </section>
+
+        <div class="col-md-12">
+            @Html.TextBoxCustomFor(x => x.NomeDaMae, 4, icone: "fa fa-group")
+            @Html.TextBoxCustomFor(x => x.NomeDoPai, 4, icone: "fa fa-group")
+            @Html.DropDownListCustomFor(x => x.TurmaId, ListTurmas, 4, classIcone: "fa fa-flask");
         </div>
-    </fieldset>
-    <header>
-        Informações de Endereço
-    </header>
-    <fieldset>
-        <div class="row">
-            <section class="col-md-4">
-                <label class="">CEP</label>
-                <input asp-for="Endereco.Cep" class="form-control mascara-cep" />
-                <span asp-validation-for="Endereco.Cep" class="text-danger validate-fail"></span>
-            </section>
-            <section class="col-md-4">
-                <label class="">País</label>
-                <input asp-for="Endereco.Pais" class="form-control" />
-                <span asp-validation-for="Endereco.Pais" class="text-danger validate-fail"></span>
-            </section>
-            <section class="col-md-4">
-                <label class="">Estado</label>
-                <input asp-for="Endereco.Estado" class="form-control" />
-                <span asp-validation-for="Endereco.Estado" class="text-danger validate-fail"></span>
-            </section>
+    }
+    @using (Html.BeginFieldSetCustom("Informações de Endereço")) { 
+
+        <div class="col-md-12">
+           @Html.TextBoxCustomFor(x => x.Endereco.Cep, 4, icone: "fa fa-map-marker", htmlAttributes: new { @class = "mascara-cep" })
+           @Html.TextBoxCustomFor(x => x.Endereco.Pais, 4, icone: "fa fa-map-marker")
+           @Html.TextBoxCustomFor(x => x.Endereco.Estado, 4, icone: "fa fa-map-marker")
         </div>
-        <div class="row">
-            <section class="col-md-4">
-                <label class="">Cidade</label>
-                <input asp-for="Endereco.Cidade" class="form-control" />
-                <span asp-validation-for="Endereco.Cidade" class="text-danger validate-fail"></span>
-            </section>
-            <section class="col-md-4">
-                <label class="">Rua</label>
-                <input asp-for="Endereco.Rua" class="form-control" />
-                <span asp-validation-for="Endereco.Rua" class="text-danger validate-fail"></span>
-            </section>
-            <section class="col-md-4">
-                <label class="">Número</label>
-                <input asp-for="Endereco.Numero" class="form-control" />
-                <span asp-validation-for="Endereco.Numero" class="text-danger validate-fail"></span>
-            </section>
+        <div class="col-md-12">
+            @Html.TextBoxCustomFor(x => x.Endereco.Cidade, 4, icone: "fa fa-map-marker")
+            @Html.TextBoxCustomFor(x => x.Endereco.Rua, 4, icone: "fa fa-map-marker")
+            @Html.TextBoxCustomFor(x => x.Endereco.Numero, 4, icone: "fa fa-map-marker")
         </div>
-        <div class="row">
-            <section class="col-md-12">
-                <label class="">Complemento</label>
-                <textarea asp-for="Endereco.Complemento" class="form-control" rows="3"></textarea>
-                <span asp-validation-for="Endereco.Complemento" class="text-danger validate-fail"></span>
-            </section>
-        </div>
-    </fieldset>
+        @Html.TextAreaCustomFor(x => x.Endereco.Complemento)
+    }
     <!-- CAMPOS IMPLICITOS -->
     @if (ViewBag.Action != "Cadastrar")
     {
@@ -101,17 +40,4 @@
         <input asp-for="EnderecoId" hidden />
         <input asp-for="Endereco.Id" hidden />
     }
-
-    <footer>
-        <div class="right">
-            <a asp-action="Index" class="btn btn-default">
-                <i class="fa fa-arrow-left"></i>
-                Voltar
-            </a>
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-check"></i>
-                Salvar
-            </button>
-        </div>
-    </footer>
-</form>
+}

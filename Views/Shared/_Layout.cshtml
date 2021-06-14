@@ -13,11 +13,12 @@
     <link href="~/lib/template/css/smartadmin-production-plugins.min.css" rel="stylesheet" />
     <link href="~/lib/template/css/smartadmin-skins.min.css" rel="stylesheet" />
     <link href="~/lib/template/css/smartadmin-rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-grid.min.css" rel="stylesheet" />
     <!-- Libs de gráficos -->
     <link href="~/lib/novus/build/nv.d3.min.css" rel="stylesheet" />
 
     <link href="~/lib/tabulator-master/dist/css/tabulator.css" rel="stylesheet" />
-    <link href="~/css/TabulatorAdapterLayout.css" rel="stylesheet" />
+    <link href="~/css/table.config.layout.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="~/css/site.css" />
     @RenderSection("Styles", required: false)
@@ -42,10 +43,10 @@
                         <a asp-controller="Alunos" asp-action="Index"><span class="fa fa-user mr-3"></span> Alunos</a>
                     </li>
                     <li>
-                        <a asp-controller="Professores" asp-action="Index"><span class="fa fa-user mr-3"></span> Profssores</a> @*fa-briefcase*@
+                        <a asp-controller="Professores" asp-action="Index"><span class="fa fa-user mr-3"></span> Profssores</a>
                     </li>
                     <li>
-                        <a asp-controller="Turmas" asp-action="Index"><span class="fa fa-users mr-3"></span>Turmas</a> @*fa-briefcase*@
+                        <a asp-controller="Turmas" asp-action="Index"><span class="fa fa-users mr-3"></span>Turmas</a>
                     </li>
                     <li>
                         <a href="#"><span class="fa fa-sticky-note mr-3"></span> Relatórios</a>
@@ -65,19 +66,9 @@
                 </ul>
 
                 <div class="mb-5">
-                    @*<h3 class="h6 mb-3">Subscribe for newsletter</h3>
-                        <form action="#" class="subscribe-form">
-                            <div class="form-group d-flex">
-                                <div class="icon"><span class="icon-paper-plane"></span></div>
-                                <input type="text" class="form-control" placeholder="Enter Email Address">
-                            </div>
-                        </form>*@
                 </div>
 
                 <div class="footer">
-                    @*<p>
-                            Copyright &copy;
-                        </p>*@
                 </div>
 
             </div>
@@ -93,6 +84,9 @@
             @RenderBody()
         </div>
     </div>
+    <footer class="footer">
+        <p>SGI Agency - Sistemas de Gerenciamento Interno</p>
+    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"

@@ -18,7 +18,7 @@ var columns = [
 
 var tableinfo = new Tabulator("#table-info", {
     data: [],
-    height: "400px",
+    height: "70vh",
     layout: "fitColumns",
     columns: columns,
     pagination: "local",

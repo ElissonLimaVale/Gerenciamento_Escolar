@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using SGIEscolar.Data.Interface;
 using SGIEscolar.Data.Notificacoes;
 using SGIEscolar.Data.Service;
+using SGIEscolar.Utils;
 using SGIEscolar.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
@@ -31,7 +33,7 @@ namespace SGIEscolar.Controllers
             };
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }
@@ -43,7 +45,6 @@ namespace SGIEscolar.Controllers
 
         public async Task<IActionResult> Cadastrar()
         {
-            ViewBag.Action = nameof(Cadastrar);
             await CarregarDropDown(nameof(Cadastrar));
             return View();
         }
@@ -104,12 +105,15 @@ namespace SGIEscolar.Controllers
 
         private async Task CarregarDropDown(string action)
         {
+            var listaTurmas = await _turma.ListarTodos() as List<TurmaViewModel>;
+
             if (string.Equals(action, nameof(Cadastrar)))
                 ViewBag.Title = "Matricular Aluno";
             else
                 ViewBag.Title = "Atualizar Matricula do Aluno";
+
             ViewBag.Action = action;
-            ViewBag.Turmas = await _turma.ListarTodos();
+            ViewBag.Turmas = listaTurmas.ToSelectList(x => x.Nome, x => x.Id.ToString(), "", search: true);
         }
     }
 }
