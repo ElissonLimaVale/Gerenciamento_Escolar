@@ -10,8 +10,8 @@ using SGIEscolar.Data.Context;
 namespace SGIEscolar.Data.Migrations
 {
     [DbContext(typeof(SGIEscolarContext))]
-    [Migration("20210607001033_Aluno-DeetCascade")]
-    partial class AlunoDeetCascade
+    [Migration("20210614173120_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -148,11 +148,53 @@ namespace SGIEscolar.Data.Migrations
                     b.ToTable("Enderecos");
                 });
 
+            modelBuilder.Entity("SGIEscolar.Data.Models.Instituicao", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CelularCordenador")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<DateTime>("DataAlteracao")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DataBase")
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EmailCordenador")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("TelefoneCordenador")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Instituicoes");
+                });
+
             modelBuilder.Entity("SGIEscolar.Data.Models.Licenca", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("AutoRenovacao")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Codigo")
                         .HasMaxLength(200)
@@ -280,6 +322,13 @@ namespace SGIEscolar.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
 
+                    b.Property<string>("Funcao")
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<Guid>("InstituicaoId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Nome")
                         .HasMaxLength(100)
                         .HasColumnType("varchar(100)");
@@ -289,6 +338,8 @@ namespace SGIEscolar.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("InstituicaoId");
 
                     b.ToTable("Usuarios");
                 });
@@ -355,6 +406,22 @@ namespace SGIEscolar.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Endereco");
+                });
+
+            modelBuilder.Entity("SGIEscolar.Data.Models.Usuario", b =>
+                {
+                    b.HasOne("SGIEscolar.Data.Models.Instituicao", "Instituicao")
+                        .WithMany("Usuarios")
+                        .HasForeignKey("InstituicaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instituicao");
+                });
+
+            modelBuilder.Entity("SGIEscolar.Data.Models.Instituicao", b =>
+                {
+                    b.Navigation("Usuarios");
                 });
 
             modelBuilder.Entity("SGIEscolar.Data.Models.Turma", b =>

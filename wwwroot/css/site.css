@@ -4615,3 +4615,8 @@ input, .input, textarea, select {
 .margin-10 {
     margin: 10px !important;
 }
+header {
+    margin-top: 20px !important;
+    margin-bottom: 12px !important;
+    font-size: 18px;
+}

@@ -12,10 +12,11 @@ namespace SGIEscolar.Data.Mapping
 
             builder.Property(x => x.Nome).HasMaxLength(100).HasColumnType("varchar");
             builder.Property(x => x.Email).HasMaxLength(100).HasColumnType("varchar");
+            builder.Property(x => x.Funcao).HasMaxLength(100).HasColumnType("varchar");
             builder.Property(x => x.Senha).HasMaxLength(100).HasColumnType("varchar");
-
+            
+            //relacionamentos
             builder.HasMany(x => x.Permissoes).WithMany(x => x.Usuarios).UsingEntity(join => join.ToTable("UsuariosPermissoes"));
-            //builder.HasOne(x => x.Licenca).WithOne();
 
             builder.ToTable("Usuarios");
         }

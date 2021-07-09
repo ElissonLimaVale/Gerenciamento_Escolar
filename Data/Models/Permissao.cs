@@ -7,6 +7,6 @@ namespace SGIEscolar.Data.Models
     {
         public string Permission { get; set; }
         public string Nivel { get; set; }
-        public IEnumerable<Usuario> Usuarios { get; set; }
+        public virtual IEnumerable<Usuario> Usuarios { get; set; }
     }
 }

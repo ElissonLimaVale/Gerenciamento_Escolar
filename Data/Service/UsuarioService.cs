@@ -17,8 +17,12 @@ namespace SGIEscolar.Data.Service
     public class UsuarioService : BaseService<Usuario, UsuarioViewModel>
     {
         private readonly UsuarioRepository _usuario;
+        private readonly TurmaService _turma;
+        private readonly InstituicaoService _escola;
         public UsuarioService(
-            UsuarioRepository repository, 
+            UsuarioRepository repository,
+            TurmaService turma,
+            InstituicaoService escola,
             INotificador notificador,  
             IMapper mapper, 
             ILogger logger,
@@ -26,6 +30,8 @@ namespace SGIEscolar.Data.Service
             AutenticacaoService autenticacao) : base(repository, notificador, mapper, logger, dapper, autenticacao)
         {
             this._usuario = repository;
+            this._turma = turma;
+            this._escola = escola;
         }
 
         public override async Task<int> Adicionar(UsuarioViewModel usuario)
@@ -61,6 +67,7 @@ namespace SGIEscolar.Data.Service
             Claims.Add(new Claim(ClaimTypes.Sid, login.Id.ToString()));
             Claims.Add(new Claim(ClaimTypes.Email, login.Email));
             Claims.Add(new Claim(ClaimTypes.Name, login.Nome));
+            Claims.Add(new Claim(ClaimTypes.GivenName, login.InstituicaoId.ToString()));
 
             login.Permissoes?.ToList().ForEach((data) => {
                 Claims.Add(new Claim(ClaimTypes.Role, data.Id.ToString()));

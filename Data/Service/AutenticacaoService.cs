@@ -24,5 +24,10 @@ namespace SGIEscolar.Data.Service
         {
             return _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
         }
+
+        public Guid RetornaInstituicaoId()
+        {
+            return Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.GivenName)?.Value);
+        }
     }
 }

@@ -43,7 +43,7 @@ var test_data = stream_layers(3, 128, .1).map(function (data, i) {
 
 nv.addGraph({
     generate: function () {
-        var width = window.innerWidth - 50,
+        var width = document.getElementById("grafic-notas").offsetWidth,
             height = 400;
 
         var chart = nv.models.multiBarChart()

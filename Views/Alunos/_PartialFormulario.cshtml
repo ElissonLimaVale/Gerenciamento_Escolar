@@ -3,34 +3,27 @@
     var ListTurmas = ViewBag.Turmas as List<SelectListItem>;
 }
 
-@using (Html.BeginFormCustom("form-cadastro-aluno", "Infoemações do Aluno", ViewBag.Action as string))
+@using (Html.BeginFormCustom("form-cadastro-aluno", "", ViewBag.Action as string))
 {
-    @using (Html.BeginFieldSetCustom())
+    @using (Html.BeginFieldSetCustom("Informações do Aluno"))
     {
-        <div class="col-md-12">
-            @Html.TextBoxCustomFor(x => x.Nome, 4, icone: "fa fa-user")
-            @Html.TextBoxCustomFor(x => x.CPF, 4, icone: "fa fa-child", htmlAttributes: new { @class = "mascara-cpf" })
-            @Html.TextBoxCustomFor(x => x.DataNascimento, 4, icone: "fa fa-calendar-o", htmlAttributes: new { @class = "mascara-data", @type = "data" })
-        </div>
-
-        <div class="col-md-12">
-            @Html.TextBoxCustomFor(x => x.NomeDaMae, 4, icone: "fa fa-group")
-            @Html.TextBoxCustomFor(x => x.NomeDoPai, 4, icone: "fa fa-group")
-            @Html.DropDownListCustomFor(x => x.TurmaId, ListTurmas, 4, classIcone: "fa fa-flask");
-        </div>
+        @Html.TextBoxCustomFor(x => x.Nome, 4, icone: "fa fa-user")
+        @Html.TextBoxCustomFor(x => x.CPF, 4, icone: "fa fa-child", htmlAttributes: new { @class = "mascara-cpf" })
+        @Html.TextBoxCustomFor(x => x.DataNascimento, 4, icone: "fa fa-calendar-o", htmlAttributes: new { @class = "mascara-data", @type = "data" })
+       
+        @Html.TextBoxCustomFor(x => x.NomeDaMae, 4, icone: "fa fa-group")
+        @Html.TextBoxCustomFor(x => x.NomeDoPai, 4, icone: "fa fa-group")
+        @Html.DropDownListCustomFor(x => x.TurmaId, ListTurmas, 4, classIcone: "fa fa-flask");
     }
     @using (Html.BeginFieldSetCustom("Informações de Endereço")) { 
+        @Html.TextBoxCustomFor(x => x.Endereco.Cep, 4, icone: "fa fa-map-marker", htmlAttributes: new { @class = "mascara-cep" })
+        @Html.TextBoxCustomFor(x => x.Endereco.Pais, 4, icone: "fa fa-map-marker")
+        @Html.TextBoxCustomFor(x => x.Endereco.Estado, 4, icone: "fa fa-map-marker")
 
-        <div class="col-md-12">
-           @Html.TextBoxCustomFor(x => x.Endereco.Cep, 4, icone: "fa fa-map-marker", htmlAttributes: new { @class = "mascara-cep" })
-           @Html.TextBoxCustomFor(x => x.Endereco.Pais, 4, icone: "fa fa-map-marker")
-           @Html.TextBoxCustomFor(x => x.Endereco.Estado, 4, icone: "fa fa-map-marker")
-        </div>
-        <div class="col-md-12">
-            @Html.TextBoxCustomFor(x => x.Endereco.Cidade, 4, icone: "fa fa-map-marker")
-            @Html.TextBoxCustomFor(x => x.Endereco.Rua, 4, icone: "fa fa-map-marker")
-            @Html.TextBoxCustomFor(x => x.Endereco.Numero, 4, icone: "fa fa-map-marker")
-        </div>
+        @Html.TextBoxCustomFor(x => x.Endereco.Cidade, 4, icone: "fa fa-map-marker")
+        @Html.TextBoxCustomFor(x => x.Endereco.Rua, 4, icone: "fa fa-map-marker")
+        @Html.TextBoxCustomFor(x => x.Endereco.Numero, 4, icone: "fa fa-map-marker")
+        
         @Html.TextAreaCustomFor(x => x.Endereco.Complemento)
     }
     <!-- CAMPOS IMPLICITOS -->

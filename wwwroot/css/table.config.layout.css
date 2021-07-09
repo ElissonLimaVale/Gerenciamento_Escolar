@@ -133,7 +133,7 @@
 }
 
 .tabulator-page:hover {
-    background-color: #22b2cc !important;
+    /*background-color: #22b2cc !important;*/
     color: black !important;
 }
 
