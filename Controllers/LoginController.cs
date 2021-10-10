@@ -15,13 +15,15 @@ namespace SGIEscolar.Controllers
     public class LoginController : BaseController
     {
         private readonly UsuarioService _service;
+        private readonly InstituicaoService _instituicao;
         private Dictionary<int, ErrorViewModel> _errors;
         public LoginController(
             UsuarioService service,
-            INotificador notificador
-            ) : base(notificador)
+            INotificador notificador,
+            InstituicaoService instituicao) : base(notificador)
         {
             this._service = service;
+            this._instituicao = instituicao;
             this._errors = this.GetErrors();
         }
 
@@ -35,6 +37,7 @@ namespace SGIEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 await _service.Authenticar(user, this.ControllerContext);
                 if (OperacaoValida())
                     return RedirectToAction("Index", "Home");

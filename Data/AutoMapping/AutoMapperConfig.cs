@@ -2,8 +2,6 @@
 using SGIEscolar.Data.Models;
 using SGIEscolar.ViewModels;
 
-
-
 namespace SGIEscolar.Data.AutoMapping
 {
     public class AutoMapperConfig : Profile

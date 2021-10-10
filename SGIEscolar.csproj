@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <StartupObject>SGIEscolar.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

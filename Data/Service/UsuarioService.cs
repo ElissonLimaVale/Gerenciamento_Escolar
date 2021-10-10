@@ -57,12 +57,6 @@ namespace SGIEscolar.Data.Service
 
         public async Task Authenticar(UsuarioViewModel usuario, Microsoft.AspNetCore.Mvc.ControllerContext context)
         {
-            await Adicionar(new UsuarioViewModel { 
-                Nome = "Elisson Lima do Vale",
-                Email = "elima@gmail.com",
-                Senha = "1234",
-                Funcao = "Gestor"
-            });
             var login = await BuscarObjeto(x => x.Email == usuario.Email && x.Id != new Guid());
             if(login == null || !BCrypt.Net.BCrypt.Verify(usuario.Senha, login.Senha))
             {

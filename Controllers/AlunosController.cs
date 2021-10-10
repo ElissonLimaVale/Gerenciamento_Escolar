@@ -35,7 +35,7 @@ namespace SGIEscolar.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _service.ListarTodos());
         }
 
         public IActionResult InformacoesPeriodo()

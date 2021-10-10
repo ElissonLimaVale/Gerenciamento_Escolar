@@ -7,6 +7,7 @@
 {
     @using (Html.BeginFieldSetCustom("Informações do Aluno"))
     {
+        @Html.AntiForgeryToken()
         @Html.TextBoxCustomFor(x => x.Nome, 4, icone: "fa fa-user")
         @Html.TextBoxCustomFor(x => x.CPF, 4, icone: "fa fa-child", htmlAttributes: new { @class = "mascara-cpf" })
         @Html.TextBoxCustomFor(x => x.DataNascimento, 4, icone: "fa fa-calendar-o", htmlAttributes: new { @class = "mascara-data", @type = "data" })

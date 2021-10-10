@@ -216,3 +216,7 @@ tr {
 .sorting_asc {
     background-color: rgba(0,0,0,.12) !important;
 }
+
+.btns-acoes {
+    width: 50px !important;
+}

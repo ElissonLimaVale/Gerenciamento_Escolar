@@ -12,6 +12,7 @@ namespace SGIEscolar.Data.Service
     public class TurmaService : BaseService<Turma, TurmaViewModel>
     {
         private readonly TurmaRepository _turma;
+        private List<Task> _tarefas;
         public TurmaService(
             TurmaRepository repository, 
             INotificador notificador, 
@@ -21,6 +22,7 @@ namespace SGIEscolar.Data.Service
             AutenticacaoService autenticacao) : base(repository, notificador, mapper, logger, dapper, autenticacao)
         {
             this._turma = repository;
+            _tarefas = new List<Task>();
         }
 
         public override async Task<int> Adicionar(TurmaViewModel turma)
@@ -59,8 +61,11 @@ namespace SGIEscolar.Data.Service
             });
             turmas.ForEach((item) =>
             {
-                _ = base.Adicionar(item).Result;
+                _tarefas.Add(base.Adicionar(item));
             });
+
+            Task.WaitAll(_tarefas.ToArray());
+
             return 0;
         }
     }
