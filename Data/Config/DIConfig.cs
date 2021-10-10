@@ -23,16 +23,22 @@ namespace SGIEscolar.Data.Config
             services.AddScoped<AutenticacaoService>();
 
             // Registro de injeção de dependência das classes
+            services.AddScoped<TurmaRepository>();
+            services.AddScoped<TurmaService>();
+            services.AddScoped<ProfessorService>();
+            services.AddScoped<ProfessorRepository>();
+            services.AddScoped<UsuarioRepository>();
+            services.AddScoped<UsuarioService>();
             services.AddScoped<AlunoRepository>();
             services.AddScoped<AlunoService>();
             services.AddScoped<EnderecoService>();
             services.AddScoped<EnderecoRepository>();
-            services.AddScoped<UsuarioRepository>();
-            services.AddScoped<UsuarioService>();
-            services.AddScoped<TurmaRepository>();
-            services.AddScoped<TurmaService>();
             services.AddScoped<InstituicaoRepository>();
             services.AddScoped<InstituicaoService>();
+            services.AddScoped<LicencaService>();
+            services.AddScoped<LicencaRepository>();
+            services.AddScoped<PermissaoService>();
+            services.AddScoped<PermissaoRespository>();
             
             return services;
         }

@@ -1,23 +1,24 @@
-﻿@model AlunoViewModel
+﻿@model UsuarioViewModel
+
 @{
-    ViewData["title"] = "Matricular Aluno";
+    ViewData["title"] = "Atualizar Dados do Usuário";
 }
 @section sitemap {
     <ol class="breadcrumb">
         <li><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
-        <li><a asp-controller="Alunos" asp-action="Index">Alunos</a></li>
-        <li>Matricular</li>
+        <li><a asp-controller="Usuarios" asp-action="Index">Usuários</a></li>
+        <li>Atualizar</li>
     </ol>
 }
 
-@using (Html.BeginWidget("Matricular Aluno"))
+@using (Html.BeginWidget("Atualizar Dados do Usuário"))
 {
     @await Html.PartialAsync("_PartialFormulario", Model)
 }
 
 @section Scripts {
+    <script src="~/js/usuarios/usuario.js"></script>
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-

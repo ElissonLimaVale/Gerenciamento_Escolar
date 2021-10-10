@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+
 namespace SGIEscolar.Data.Models
 {
 	public class Endereco : BaseEntity

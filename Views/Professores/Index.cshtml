@@ -1,5 +1,60 @@
 ﻿@model List<ProfessorViewModel>
 
-<div>
-    <h1>Tela Inicial</h1>
-</div>
+@{
+    ViewData["title"] = "Professores";
+}
+@section sitemap {
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+        <li><a asp-controller="Professores" asp-action="Index">Professores</a></li>
+        <li>Lista</li>
+    </ol>
+}
+
+@using (Html.BeginWidget("Lista de Professores", "Verifique suas permissões para realizar alterações."))
+{
+    @using (Html.BeginTable())
+    {
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Telefone</th>
+                <th>Disciplina</th>
+                <th class="btns-acoes"> Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var Professor in Model)
+            {
+                <tr>
+                    <td>@Professor.Nome</td>
+                    <td>@Professor.Email</td>
+                    <td>@Professor.Telefone</td>
+                    <td>@Professor.Disciplina</td>
+                    <td class="btns-acoes">
+                        <div class="btn-group">
+                            <a asp-action="Visualizar" asp-route-id="@Professor.Id" class="btn btn-xs btn-default" title="Visualizar"><i class="fa fa-eye"></i></a>
+                            <a asp-action="Editar" asp-route-id="@Professor.Id" class="btn btn-xs btn-default" title="Editar"><i class="fa fa-pencil"></i></a>
+                            <a data-url="Professores/Excluir/@Professor.Id" class="btn btn-xs btn-default confirmaDelete" title="Excluir"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(() => { 
+            $(".toolbar").html(`
+                <section class="col-md-12 right no-padding">
+                    <a href="/Professores/Cadastrar" class="btn btn-default right">
+                        <i class="fa fa-arrow-circle-o-right"></i> Cadastrar
+                    </a>
+                </section>
+            `);
+        });
+    </script>
+}

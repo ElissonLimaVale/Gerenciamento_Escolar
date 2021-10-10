@@ -1,1 +1,56 @@
-﻿
+﻿@model List<TurmaViewModel>
+
+@{
+    ViewData["title"] = "Turmas";
+}
+
+@section sitemap {
+    <ol class="breadcrumb">
+        <li><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
+        <li><a asp-controller="Turmas" asp-action="Index">Professores</a></li>
+        <li>Lista</li>
+    </ol>
+}
+
+@using (Html.BeginWidget("Lista de Turmas da Instituição", "Verifique suas permissões para realizar alterações."))
+{
+    @using (Html.BeginTable())
+    {
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Série (Ano Letivo)</th>
+                <th class="btns-acoes"> Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var turma in Model)
+            {
+                <tr>
+                    <td>@turma.Nome</td>
+                    <td>@turma.Serie</td>
+                    <td class="btns-acoes">
+                        <div class="btn-group">
+                            <a asp-action="Editar" asp-route-id="@turma.Id" class="btn btn-xs btn-default" title="Editar"><i class="fa fa-pencil"></i></a>
+                            <a data-url="Turmas/Excluir/@turma.Id" class="btn btn-xs btn-default confirmaDelete" title="Excluir"><i class="fa fa-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(() => {
+            $(".toolbar").html(`
+                <section class="col-md-12 right no-padding">
+                    <a href="/Turmas/Cadastrar" class="btn btn-default right">
+                        <i class="fa fa-arrow-circle-o-right"></i> Cadastrar
+                    </a>
+                </section>
+            `);
+        });
+    </script>
+}

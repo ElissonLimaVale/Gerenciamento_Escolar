@@ -4,15 +4,13 @@ using SGIEscolar.Data.Interface;
 using SGIEscolar.Data.Models;
 using SGIEscolar.Data.Repository;
 using SGIEscolar.ViewModels;
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SGIEscolar.Data.Service
 {
     public class TurmaService : BaseService<Turma, TurmaViewModel>
     {
-        private readonly TurmaRepository _turma;
-        private List<Task> _tarefas;
         public TurmaService(
             TurmaRepository repository, 
             INotificador notificador, 
@@ -21,52 +19,22 @@ namespace SGIEscolar.Data.Service
             IDapper dapper,
             AutenticacaoService autenticacao) : base(repository, notificador, mapper, logger, dapper, autenticacao)
         {
-            this._turma = repository;
-            _tarefas = new List<Task>();
         }
 
-        public override async Task<int> Adicionar(TurmaViewModel turma)
+        public override async Task<int> Adicionar(TurmaViewModel entity)
         {
-            await base.Adicionar(turma);
-            var turmas = new List<TurmaViewModel>();
-            turmas.Add(new TurmaViewModel
+            if(! await ExisteItem(entity))
             {
-                Nome = "Primeiro Ano A",
-                Serie = "1º A"
-            });
-            turmas.Add(new TurmaViewModel
-            {
-                Nome = "Primeiro Ano B",
-                Serie = "1º B"
-            });
-            turmas.Add(new TurmaViewModel
-            {
-                Nome = "Segundo Ano A",
-                Serie = "2º A"
-            });
-            turmas.Add(new TurmaViewModel
-            {
-                Nome = "Segundo Ano B",
-                Serie = "2º B"
-            });
-            turmas.Add(new TurmaViewModel
-            {
-                Nome = "Terceiro Ano A",
-                Serie = "3º A"
-            });
-            turmas.Add(new TurmaViewModel
-            {
-                Nome = "Terceiro Ano B",
-                Serie = "3º B"
-            });
-            turmas.ForEach((item) =>
-            {
-                _tarefas.Add(base.Adicionar(item));
-            });
-
-            Task.WaitAll(_tarefas.ToArray());
-
+                return await base.Adicionar(entity);
+            }
+            Notificar("Ops, já existe uma turma cadastrada com o mesmo Nome e/ou Série!");
             return 0;
+        }
+
+        private async Task<bool> ExisteItem(TurmaViewModel entity)
+        {
+            var turmas = await base.BuscarLista(x => x.Id.Equals(entity.Id) || x.Nome.Equals(entity.Nome) || x.Serie.Equals(entity.Serie));
+            return turmas.Any();
         }
     }
 }

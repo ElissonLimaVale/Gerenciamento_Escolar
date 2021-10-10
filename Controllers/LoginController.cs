@@ -16,19 +16,24 @@ namespace SGIEscolar.Controllers
     {
         private readonly UsuarioService _service;
         private readonly InstituicaoService _instituicao;
+        private readonly AutenticacaoService _autenticator;
         private Dictionary<int, ErrorViewModel> _errors;
         public LoginController(
             UsuarioService service,
             INotificador notificador,
-            InstituicaoService instituicao) : base(notificador)
+            InstituicaoService instituicao,
+            AutenticacaoService autenticator) : base(notificador)
         {
             this._service = service;
             this._instituicao = instituicao;
+            this._autenticator = autenticator;
             this._errors = this.GetErrors();
         }
 
         public IActionResult Index()
         {
+            if (!_autenticator.RetornaUsuarioId().Equals(new Guid()))
+                return RedirectToAction("Index", "Home");
             return View();
         }
 
@@ -43,7 +48,7 @@ namespace SGIEscolar.Controllers
                     return RedirectToAction("Index", "Home");
             } 
             else
-                _notificador.Handle(new Notificacao("Preecha os campos obrigatório!"));
+                _notificador.Handle(new Notificacao("Preecha os campos obrigatórios!"));
             return View("Index", user);
         }
         public async Task<IActionResult> Logout()

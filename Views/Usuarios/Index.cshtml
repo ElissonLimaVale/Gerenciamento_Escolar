@@ -11,32 +11,48 @@
     </ol>
 }
 
-@using (Html.BeginWidget("Lista de Usuários", "Verifique suas permissões para realizar alterações.")) {
-    @using (Html.BeginTable()) { 
+@using (Html.BeginWidget("Lista de Usuários", "Verifique suas permissões para realizar alterações."))
+{
+    @using (Html.BeginTable())
+    {
         <thead>
             <tr>
                 <th>Nome</th>
-                <th>Email</th>
+                <th>E-mail</th>
                 <th>Função</th>
                 <th class="btns-acoes"> Ações</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in Model) {
+            @foreach (var user in Model)
+            {
                 <tr>
                     <td>@user.Nome</td>
                     <td>@user.Email</td>
                     <td>@user.Funcao</td>
                     <td class="btns-acoes">
                         <div class="btn-group">
-                            <a asp-action="Visualizar" asp-route-id="@user.Id" class="btn btn-xs btn-default" title="Visualizar"><i class="fa fa-eye"></i></a>
                             <a asp-action="Editar" asp-route-id="@user.Id" class="btn btn-xs btn-default" title="Editar"><i class="fa fa-pencil"></i></a>
-                            <a data-url="Usuarios/Excluir/@user.Id"  class="btn btn-xs btn-default confirmaDelete" title="Excluir"><i class="fa fa-trash"></i></a>
+                            <a data-url="Usuarios/Excluir/@user.Id" class="btn btn-xs btn-default confirmaDelete" title="Excluir"><i class="fa fa-trash"></i></a>
                         </div>
                     </td>
                 </tr>
-                }
+            }
         </tbody>
     }
 }
 
+
+@section Scripts {
+    <script>
+        $(document).ready(() => {
+            $(".toolbar").html(`
+                <section class="col-md-12 right no-padding">
+                    <a href="/Usuarios/Cadastrar" class="btn btn-default right">
+                        <i class="fa fa-arrow-circle-o-right"></i> Cadastrar
+                    </a>
+                </section>
+            `);
+        });
+    </script>
+}

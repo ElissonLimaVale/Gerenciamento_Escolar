@@ -12,7 +12,7 @@ namespace SGIEscolar.Data.Mapping
             builder.Property(x => x.Nome).HasMaxLength(100).HasColumnType("varchar");
             builder.Property(x => x.Email).HasMaxLength(100).HasColumnType("varchar");
             builder.Property(x => x.Telefone).HasMaxLength(20).HasColumnType("varchar");
-            builder.Property(x => x.Desciplina).HasMaxLength(100).HasColumnType("varchar");
+            builder.Property(x => x.Disciplina).HasMaxLength(100).HasColumnType("varchar");
 
             builder.HasOne(a => a.Endereco).WithOne();
 

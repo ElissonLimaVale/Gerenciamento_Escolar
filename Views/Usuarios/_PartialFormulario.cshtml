@@ -1,0 +1,52 @@
+﻿@model UsuarioViewModel
+
+@using (Html.BeginFormCustom("FormCadastroUsuario", "", ViewBag.Action as string))
+{
+    @using (Html.BeginFieldSetCustom("Dados do Usuário"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.TextBoxCustomFor(x => x.Nome, 4, icone: "fa fa-user")
+        @Html.TextBoxCustomFor(x => x.Email, 4, icone: "fa fa-envelope")
+        @Html.TextBoxCustomFor(x => x.Funcao, 4, icone: "fa fa-male")
+
+        @Html.DropDownListCustomFor(x => x.InstituicaoId, ViewBag.Instituicoes as List<SelectListItem>, 12)
+    }
+
+    @using (Html.BeginFieldSetCustom("Senha do Usuário"))
+    {
+        @if (!(ViewBag.Action as string).Equals("Cadastrar"))
+        {
+            <div class="alert alert-warning col-md-12">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="mensagemRetornoSucesso">
+                    <strong class="text-warning"><i class="fa-fw fa fa-warning"></i> Aviso:</strong>
+                    Você pode não preecher os campos de senha caso não queira alterar a senha do usuário!
+                </div>
+            </div>
+        }
+        <section class="col col-md-6">
+            <label class="" for="AterarSenha">Senha</label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
+                <input class="form-control" id="AterarSenha" name="AterarSenha" type="password" value="" onkeyup="Metodos.ValidarPassWord();" />
+            </div>
+            <span class="field-validation-valid text-danger" data-valmsg-for="AterarSenha" data-valmsg-replace="true"></span>
+        </section>
+        <section class="col col-md-6">
+            <label class="" for="ConfirmarSenha">Confirmar Senha</label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-unlock-alt"></i></span>
+                <input class="form-control" id="ConfirmarSenha" name="ConfirmarSenha" type="password" value="" onkeyup="Metodos.ValidarPassWord();" />
+            </div>
+            <span class="field-validation-valid text-danger" data-valmsg-for="ConfirmarSenha" data-valmsg-replace="true"></span>
+        </section>
+        <input asp-for="Senha" hidden />
+    }
+
+    @if (!(ViewBag.Action as string).Equals("Cadastrar"))
+    {
+        <input asp-for="Id" hidden />
+    }
+}

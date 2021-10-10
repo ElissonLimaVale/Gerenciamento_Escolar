@@ -1,0 +1,18 @@
+﻿@model TurmaViewModel
+
+@using (Html.BeginFormCustom("FormCadastroTurma", "", @ViewBag.Action as string))
+{
+    @using (Html.BeginFieldSetCustom("Dados da Turma"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.TextBoxCustomFor(x => x.Nome, 6, icone: "fa fa-user")
+        @Html.TextBoxCustomFor(x => x.Serie, 6, icone: "fa fa-envelope")
+    }
+
+    <!-- CAMPOS IMPLICITOS -->
+    @if (!(ViewBag.Action as string).Equals("Cadastrar"))
+    {
+        <input asp-for="Id" hidden />
+    }
+}
+

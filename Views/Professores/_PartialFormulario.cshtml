@@ -1,20 +1,19 @@
-﻿@model AlunoViewModel
+﻿@model ProfessorViewModel
 @{
     var ListTurmas = ViewBag.Turmas as List<SelectListItem>;
 }
 
-@using (Html.BeginFormCustom("form-cadastro-aluno", "", ViewBag.Action as string))
+@using (Html.BeginFormCustom("FormCadastrarProfessor", "", @ViewBag.Action as string))
 {
-    @using (Html.BeginFieldSetCustom("Informações do Aluno"))
+    @using (Html.BeginFieldSetCustom("Dados do Professor"))
     {
         @Html.AntiForgeryToken()
         @Html.TextBoxCustomFor(x => x.Nome, 4, icone: "fa fa-user")
-        @Html.TextBoxCustomFor(x => x.CPF, 4, icone: "fa fa-child", htmlAttributes: new { @class = "mascara-cpf" })
-        @Html.TextBoxCustomFor(x => x.DataNascimento, 4, icone: "fa fa-calendar-o", htmlAttributes: new { @class = "mascara-data", @type = "data" })
+        @Html.TextBoxCustomFor(x => x.Email, 4, icone: "fa fa-envelope")
+        @Html.TextBoxCustomFor(x => x.Telefone, 4, icone: "fa fa fa-phone")
 
-        @Html.TextBoxCustomFor(x => x.NomeDaMae, 4, icone: "fa fa-group")
-        @Html.TextBoxCustomFor(x => x.NomeDoPai, 4, icone: "fa fa-group")
-        @Html.DropDownListCustomFor(x => x.TurmaId, ListTurmas, 4, classIcone: "fa fa-flask");
+        @Html.TextBoxCustomFor(x => x.Disciplina, 6, icone: "fa fa-address-book")
+        @Html.DropDownListCustomFor(x => x.Turmas, ListTurmas, 6)
     }
 
     @using (Html.BeginFieldSetCustom("Informações de Endereço"))

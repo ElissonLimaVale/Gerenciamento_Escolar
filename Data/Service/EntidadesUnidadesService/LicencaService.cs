@@ -7,17 +7,15 @@ using SGIEscolar.ViewModels;
 
 namespace SGIEscolar.Data.Service
 {
-    public class InstituicaoService: BaseService<Instituicao, InstituicaoViewModel>
+    public class LicencaService : BaseService<Licenca, LicencaViewModel>
     {
-        public InstituicaoService(
-            InstituicaoRepository repository, 
+        public LicencaService(LicencaRepository repository, 
             INotificador notificador, 
             IMapper mapper, 
-            ILogger logger, 
+            ILogger logger,
             IDapper dapper, 
             AutenticacaoService autenticacao) : base(repository, notificador, mapper, logger, dapper, autenticacao)
         {
-
         }
     }
 }

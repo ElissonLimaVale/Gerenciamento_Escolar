@@ -58,7 +58,7 @@ namespace SGIEscolar.Controllers
                 if (OperacaoValida())
                 {
                     _notificador.Handle(new Notificacao("Aluno cadastrado com sucesso!", true));
-                    return View("Index");
+                    return View("Index", await _service.ListarTodos());
                 }
             }
             await CarregarDropDown(nameof(Cadastrar));
@@ -80,7 +80,7 @@ namespace SGIEscolar.Controllers
                 if (OperacaoValida())
                 {
                     _notificador.Handle(new Notificacao("Aluno atualizado com sucesso!", true));
-                    return View("Index");
+                    return View("Index", await _service.ListarTodos());
                 }
             }
             await CarregarDropDown(nameof(Editar));

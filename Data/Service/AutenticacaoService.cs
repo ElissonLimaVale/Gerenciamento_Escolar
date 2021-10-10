@@ -14,7 +14,16 @@ namespace SGIEscolar.Data.Service
 
         public Guid RetornaUsuarioId()
         {
-            return Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Sid)?.Value);
+            Guid retorno = new Guid();
+            try
+            {
+                retorno = Guid.Parse(_httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Sid)?.Value);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return retorno;
         }
         public string RetornaUsuarioEmail()
         {

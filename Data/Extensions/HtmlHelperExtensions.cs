@@ -157,23 +157,33 @@ namespace SGIEscolar.Data.Extensions
 
             return new HtmlString(html);
         }
-        public static IHtmlContent TextBosCustom(this IHtmlHelper helper, string id, string label, int colunas = 3, string value = "", string icone = "", string mascara = "", object htmlAttributes = null)
+        public static IHtmlContent TextBoxCustom(this IHtmlHelper helper, string id, string label, int colunas = 3, string value = "", string icone = "", string mascara = "", object htmlAttributes = null)
         {
-            var html = new StringBuilder();
-            html.AppendLine($"<section class='col-md-{colunas}'>");
-            html.AppendLine($"<label class=''>{label}</label>");
+            var html = string.Empty;
+            TagBuilder div = new TagBuilder("section");
+            div.MergeAttribute("class", $"col-md-{colunas}");
+            div.InnerHtml.AppendLine($"<label class=''>{label}</label>");
+            IHtmlContent text = null;
             if (string.IsNullOrEmpty(icone))
             {
-                html.AppendLine(helper.TextBox(id, value, htmlAttributes: GetDictionary(htmlAttributes, "form-control", mascara)).ToString());
+                text = helper.TextBox(id, value, GetDictionary(htmlAttributes, "form-control", mascara));
             }else
             {
-                html.AppendLine("<div class='input-group'>");
-                html.AppendLine($"<span class='input-group-addon'><i class='{icone}'></i></span>");
-                html.AppendLine(helper.TextBox(id, value, htmlAttributes: GetDictionary(htmlAttributes, "form-control", mascara)).ToString());
+                TagBuilder divgroup = new TagBuilder("div");
+                divgroup.MergeAttribute("class", "input-group");
+                divgroup.InnerHtml.AppendHtml($"<span class='input-group-addon'><i class='{icone}'></i></span>");
+                divgroup.InnerHtml.AppendHtml(helper.TextBox(id, value, GetDictionary(htmlAttributes, "form-control", mascara)));
+                text = divgroup;
             }
-            html.AppendLine("</section>");
 
-            return new HtmlString(html.ToString());
+            div.InnerHtml.AppendHtml(text);
+
+            using (var sw = new StringWriter())
+            {
+                div.WriteTo(sw, System.Text.Encodings.Web.HtmlEncoder.Default);
+                html = sw.ToString();
+            }
+            return new HtmlString(div.ToString());
         }
         #endregion
 

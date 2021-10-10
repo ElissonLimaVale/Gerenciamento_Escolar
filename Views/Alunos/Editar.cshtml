@@ -1,5 +1,5 @@
 ﻿@model AlunoViewModel
-@{ 
+@{
     ViewData["title"] = "Editar matricula ";
 }
 @section sitemap {
@@ -10,16 +10,10 @@
     </ol>
 }
 
-<div class="ui-widget-content">
-    <div class="widget-header">
-        <div class="text-center">
-            <h2>@ViewBag.Title</h2>
-        </div>
-    </div>
-    <div class="widget-body no-padding">
-        <partial name="_PartialFormulario" model="Model" />
-    </div>
-</div>
+@using (Html.BeginWidget("Atualizar Matricula"))
+{
+    @await Html.PartialAsync("_PartialFormulario", Model)
+}
 
 @section Scripts {
     @{

@@ -16,22 +16,23 @@ namespace SGIEscolar.Data.Service
 {
     public class UsuarioService : BaseService<Usuario, UsuarioViewModel>
     {
-        private readonly UsuarioRepository _usuario;
         private readonly TurmaService _turma;
         private readonly InstituicaoService _escola;
+        private readonly EnderecoService _endereco;
         public UsuarioService(
             UsuarioRepository repository,
             TurmaService turma,
             InstituicaoService escola,
+            EnderecoService endereco,
             INotificador notificador,  
             IMapper mapper, 
             ILogger logger,
             IDapper dapper,
             AutenticacaoService autenticacao) : base(repository, notificador, mapper, logger, dapper, autenticacao)
         {
-            this._usuario = repository;
             this._turma = turma;
             this._escola = escola;
+            this._endereco = endereco;
         }
 
         public override async Task<int> Adicionar(UsuarioViewModel usuario)
@@ -49,9 +50,14 @@ namespace SGIEscolar.Data.Service
         public override async Task<int> Atualizar(UsuarioViewModel usuario, string[] includes = null)
         {
             if (!await ExisteUsuario(usuario))
-                await base.Atualizar(usuario, includes);
-            else
-                Notificar("Já existe um usuário cadastrado com este email!");
+            {
+                if (await AlterouSenha(usuario))
+                    usuario.Senha = Encryptar(usuario.Senha);
+
+                return await base.Atualizar(usuario, includes);
+            }
+            Notificar("Já existe um usuário cadastrado com este email!");
+
             return 0;
         }
 
@@ -91,8 +97,14 @@ namespace SGIEscolar.Data.Service
 
         private async Task<bool> ExisteUsuario(UsuarioViewModel usuario)
         {
-            var registro = await BuscarObjeto(x => x.Email == usuario.Email && x.Id != new Guid() && x.Id != usuario.Id);
+            var registro = await BuscarObjeto(x => x.Email.Equals(usuario.Email) && x.Id != new Guid() && x.Id != usuario.Id);
             return (registro != null);
+        }
+
+        private async Task<bool> AlterouSenha(UsuarioViewModel entity)
+        {
+            var usuario = await BuscarLista(x => x.Id.Equals(entity.Id));
+            return !usuario.FirstOrDefault().Senha.Equals(entity.Senha);
         }
     }
 }

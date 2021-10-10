@@ -1,16 +1,16 @@
-﻿@model AlunoViewModel
+﻿@model TurmaViewModel
 @{
-    ViewData["title"] = "Matricular Aluno";
+    ViewData["title"] = "Editar matricula ";
 }
 @section sitemap {
     <ol class="breadcrumb">
         <li><a asp-controller="Home" asp-action="Index">Dashboard</a></li>
-        <li><a asp-controller="Alunos" asp-action="Index">Alunos</a></li>
-        <li>Matricular</li>
+        <li><a asp-controller="Turmas" asp-action="Index">Alunos</a></li>
+        <li>Atualizar</li>
     </ol>
 }
 
-@using (Html.BeginWidget("Matricular Aluno"))
+@using (Html.BeginWidget("Atualizar Turma"))
 {
     @await Html.PartialAsync("_PartialFormulario", Model)
 }
@@ -20,4 +20,3 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-
