@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace SGIEscolar.Utils
 {
@@ -23,5 +22,6 @@ namespace SGIEscolar.Utils
             }
             return items.OrderBy(x => x.Text).ToList();
         }
+
     }
 }

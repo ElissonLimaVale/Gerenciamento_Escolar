@@ -9,7 +9,7 @@ namespace SGIEscolar.Data.Interface
     public interface IRepository<TEntity> : IDisposable where TEntity : BaseEntity
     {
         Task<int> Adicionar(TEntity entity);
-        Task<int> Atualizar(TEntity entity);
+        Task<int> Atualizar(TEntity entity, string[] includes = null);
         Task<int> Deletar(TEntity entity);
         Task<int> DeletarPorId(Guid id, string[] includes = null);
         Task<IEnumerable<TEntity>> ListarTodos(string[] includes = null);

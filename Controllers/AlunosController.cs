@@ -76,7 +76,7 @@ namespace SGIEscolar.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _service.Atualizar(aluno);
+                await _service.Atualizar(aluno, _includes);
                 if (OperacaoValida())
                 {
                     _notificador.Handle(new Notificacao("Aluno atualizado com sucesso!", true));

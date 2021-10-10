@@ -12,15 +12,18 @@ namespace SGIEscolar.Data.Service
     public class AlunoService : BaseService<Aluno, AlunoViewModel>
     {
         private readonly AlunoRepository _aluno;
+        private readonly EnderecoService _endereco;
         public AlunoService(
             AlunoRepository repository, 
             INotificador notificador, 
             IMapper mapper, 
             ILogger logger,
             IDapper dapper,
-            AutenticacaoService autenticacao) : base(repository, notificador, mapper, logger, dapper, autenticacao)
+            AutenticacaoService autenticacao,
+            EnderecoService endereco) : base(repository, notificador, mapper, logger, dapper, autenticacao)
         {
             this._aluno = repository;
+            this._endereco = endereco;
         }
 
         public override async Task<int> Adicionar(AlunoViewModel aluno)
@@ -32,12 +35,16 @@ namespace SGIEscolar.Data.Service
             return 0;
         }
         
-        public override async Task<int> Atualizar(AlunoViewModel aluno)
+        public override async Task<int> Atualizar(AlunoViewModel aluno, string[] includes = null)
         {
             if (!await ExisteAluno(aluno))
-                await base.Atualizar(aluno);
+            {
+                await base.Atualizar(aluno, includes);
+                await _endereco.Atualizar(aluno.Endereco);
+            }
             else
                 Notificar("Já existe um aluno cadastrado com esse CPF!");
+
             return 0;
         }
 

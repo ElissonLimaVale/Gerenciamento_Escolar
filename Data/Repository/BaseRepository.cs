@@ -14,11 +14,13 @@ namespace SGIEscolar.Data.Repository
     {
         protected readonly SGIEscolarContext db;
         protected DbSet<TEntity> dbSet;
+        private List<Task> _tarefas;
 
         public BaseRepository(SGIEscolarContext DB)
         {
             this.db = DB;
             this.dbSet = this.db.Set<TEntity>();
+            _tarefas = new List<Task>();
         }
 
         public async Task<int> Adicionar(TEntity entity)
@@ -27,9 +29,16 @@ namespace SGIEscolar.Data.Repository
             return await SaveChangeAsync();
         }
 
-        public async Task<int> Atualizar(TEntity entity)
+        public async Task<int> Atualizar(TEntity entity, string[] includes = null)
         {
             db.Entry(entity).State = EntityState.Modified;
+            if (includes != null)
+            {
+                foreach (var item in includes)
+                {
+                    db.Entry(entity).Navigation(item).EntityEntry.State = EntityState.Modified;
+                }
+            }
             return await SaveChangeAsync();
         }
 
@@ -49,10 +58,12 @@ namespace SGIEscolar.Data.Repository
         public async Task<IEnumerable<TEntity>> ListarTodos(string[] includes = null)
         {
             var result = dbSet.AsNoTracking();
+
             if (includes != null)
+            {
                 foreach (var item in includes)
                     result = result.Include(item);
-
+            }
             return await result.ToListAsync();
         }
 

@@ -38,9 +38,9 @@ namespace SGIEscolar.Data.Service
             return await _repository.Adicionar(_mapper.Map<TEntity>(entity));
         }
 
-        public virtual async Task<int> Atualizar(TEntityViewModel entity)
+        public virtual async Task<int> Atualizar(TEntityViewModel entity, string[] includes = null)
         {
-            return await _repository.Atualizar(_mapper.Map<TEntity>(entity));
+            return await _repository.Atualizar(_mapper.Map<TEntity>(entity), includes);
         }
 
         public virtual async Task<int> Deletar(TEntityViewModel entity)

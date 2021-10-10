@@ -46,10 +46,10 @@ namespace SGIEscolar.Data.Service
             return 0;
         }
         
-        public override async Task<int> Atualizar(UsuarioViewModel usuario)
+        public override async Task<int> Atualizar(UsuarioViewModel usuario, string[] includes = null)
         {
             if (!await ExisteUsuario(usuario))
-                await base.Atualizar(usuario);
+                await base.Atualizar(usuario, includes);
             else
                 Notificar("Já existe um usuário cadastrado com este email!");
             return 0;
