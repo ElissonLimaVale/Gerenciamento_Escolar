@@ -1,5 +1,5 @@
 ﻿@model List<AlunoViewModel>
-@{ 
+@{
     ViewData["title"] = "Alunos ";
 }
 @section sitemap {
@@ -32,6 +32,15 @@
         AQUI É RENDERIZADO O TABULATOR
     </div>
 }
+
 @section Scripts {
+    <!-- Tabulator - Biblioteca de gerenciamento de tabelas -->
+    <script src="~/lib/tabulator-master/dist/js/tabulator.min.js"></script>
+    <script src="~/lib/tabulator-master/dist/js/modules/ajax.min.js"></script>
+    <script src="~/lib/tabulator-master/dist/js/modules/responsive_layout.js"></script>
+    <script src="~/lib/tabulator-master/dist/js/modules/accessor.min.js"></script>
+    <script src="~/lib/tabulator-master/dist/js/modules/format.min.js"></script>
+    <script src="~/lib/tabulator-master/dist/js/modules/mutator.min.js"></script>
+    <script src="~/lib/tabulator-master/tabulator.config.js"></script>
     <script src="~/js/alunos/table.alunos.js"></script>
 }
